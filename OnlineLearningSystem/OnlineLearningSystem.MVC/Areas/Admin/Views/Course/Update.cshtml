@@ -1,0 +1,32 @@
+﻿@model CourseUpdateDTO
+
+<form class="container" method="POST">
+    <h2 class="my-4">Update Course</h2>
+    <div class="mb-3">
+        <label class="form-label" asp-for="CourseName"></label>
+        <input class="form-control" asp-for="CourseName" />
+        <span class="text-danger" asp-validation-for="CourseName"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Duration"></label>
+        <input class="form-control" asp-for="Duration" />
+        <span class="text-danger" asp-validation-for="Duration"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Price"></label>
+        <input class="form-control" asp-for="Price" />
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Image"></label>
+        <input class="form-control" asp-for="Image" />
+        <span class="text-danger" asp-validation-for="Image"></span>
+    </div>
+    <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
