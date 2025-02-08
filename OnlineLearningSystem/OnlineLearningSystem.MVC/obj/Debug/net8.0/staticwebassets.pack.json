@@ -205,6 +205,38 @@
       "PackagePath": "staticwebassets\\assets\\img\\web-design.png"
     },
     {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\1137bd6f-8b64-4bb4-bcc2-65d2baee1451WIN_20240516_15_07_42_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\1137bd6f-8b64-4bb4-bcc2-65d2baee1451WIN_20240516_15_07_42_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\37a2d1b6-136e-4175-b6e1-afcc002340d7WIN_20240516_15_07_27_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\37a2d1b6-136e-4175-b6e1-afcc002340d7WIN_20240516_15_07_27_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\60260672-660a-4206-adf8-5d9b182bea67WIN_20240620_12_00_05_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\60260672-660a-4206-adf8-5d9b182bea67WIN_20240620_12_00_05_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\student\\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\student\\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\teacher\\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\8ce87cca-b2bb-4368-8e51-faffbc2b69abWIN_20240516_15_07_42_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\teacher\\8ce87cca-b2bb-4368-8e51-faffbc2b69abWIN_20240516_15_07_42_Pro.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OnlineLearningSystem.MVC.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

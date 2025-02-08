@@ -3,37 +3,45 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Category Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
         </div>
         <div class="card-body">
-            <p>Id: @Model.Id</p>
-            <p>Title: @Model.Name</p>
-            <p>Create time: @Model.CreatedAt</p>
-            @if (Model.UpdatedAt is not null)
+            <p><strong>Id:</strong> @Model.Id</p>
+            <p><strong>Name:</strong> @Model.Name</p>
+            <p><strong>Surname:</strong> @Model.Surname</p>
+            <p><strong>Enrollment Date:</strong> @Model.EnrollmentDate.ToString("MM/dd/yyyy")</p>
+            <p><strong>Create Time:</strong> @Model.CreatedAt.ToString("MM/dd/yyyy HH:mm:ss")</p>
+            @if (Model.UpdatedAt != null)
             {
-                <p>Update time: @Model.UpdatedAt</p>
+                <p><strong>Update Time:</strong> @Model.UpdatedAt?.ToString("MM/dd/yyyy HH:mm:ss")</p>
             }
-            @if (Model.EnrolledCourses.Count != 0)
+
+            @if (Model.StudentCourses?.Any() == true)
             {
+                <h6 class="mt-4">Enrolled Courses</h6>
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Active</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Course item in Model.EnrolledCourses)
+                        @foreach (var item in Model.StudentCourses)
                         {
                             <tr>
-                                <td>@item.Id</td>
-                                <td>@item.CourseName</td>
-                                <td>@item.Price</td>
+                                <td>@item.CourseId</td>
+                                <td>@item.Course?.CourseName</td>
+                                <td>@item.Course?.Price</td>
                             </tr>
                         }
                     </tbody>
                 </table>
+            }
+            else
+            {
+                <p class="text-muted">This student is not enrolled in any courses.</p>
             }
         </div>
     </div>

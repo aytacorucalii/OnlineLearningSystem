@@ -38,6 +38,10 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
 		builder.Property(c => c.Duration)
 			   .IsRequired()
 			   .HasMaxLength(50);
-
-	}
+        // Many-to-Many əlaqə StudentCourse vasitəsilə
+        builder.HasMany(c => c.StudentCourses)
+               .WithOne(sc => sc.Course)
+               .HasForeignKey(sc => sc.CourseId)
+		       .OnDelete(DeleteBehavior.NoAction);   
+    }
 }

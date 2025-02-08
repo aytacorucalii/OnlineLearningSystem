@@ -8,7 +8,7 @@ using OnlineLearning.DAL.Repositories.Abstractions;
 
 namespace OnlineLearning.BL.Services.Concretes;
 
-public class StudentService: IStudentService
+public class StudentService : IStudentService
 {
     readonly IStudentReadRepository _readRepo;
     readonly IStudentWriteRepository _writeRepo;
@@ -20,40 +20,47 @@ public class StudentService: IStudentService
         _writeRepo = writeRepo;
         _readRepo = readRepo;
     }
-    public async Task<Student> GetByIdAsync(int id) => await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
 
-    public async Task<Student> GetByIdWithChildrenAsync(int id) => await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
+    public async Task<Student> GetByIdAsync(int id) =>
+        await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
 
-    public async Task<StudentUpdateDTO> GetByIdForUpdateAsync(int id) => _mapper.Map<StudentUpdateDTO>(await GetByIdAsync(id));
+    public async Task<Student> GetByIdWithChildrenAsync(int id) =>
+        await _readRepo.GetByIdAsync(id, "StudentCourses") ?? throw new BaseException();
 
-    public async Task<ICollection<StudentListItemDTO>> GetStudentListItemsAsync() => _mapper.Map<ICollection<StudentListItemDTO>>(await _readRepo.GetAllAsync());
+    public async Task<StudentUpdateDTO> GetByIdForUpdateAsync(int id) =>
+        _mapper.Map<StudentUpdateDTO>(await GetByIdAsync(id));
 
-    public async Task<ICollection<StudentViewItemDTO>> GetStudentViewItemsAsync() => _mapper.Map<ICollection<StudentViewItemDTO>>(await _readRepo.GetAllAsync("Courses"));
+    public async Task<ICollection<StudentListItemDTO>> GetStudentListItemsAsync() =>
+        _mapper.Map<ICollection<StudentListItemDTO>>(await _readRepo.GetAllAsync());
+
+    public async Task<ICollection<StudentViewItemDTO>> GetStudentViewItemsAsync() =>
+        _mapper.Map<ICollection<StudentViewItemDTO>>(await _readRepo.GetAllAsync("StudentCourses.Course"));
+
     public async Task CreateAsync(StudentCreateDTO dto)
     {
-        Student Student = _mapper.Map<Student>(dto);
-        Student.ImgUrl = await dto.Image.SaveAsync("Student");
-        await _writeRepo.CreateAsync(Student);
+        Student student = _mapper.Map<Student>(dto);
+        student.ImgUrl = await dto.Image.SaveAsync("student");
+        await _writeRepo.CreateAsync(student);
     }
 
     public async Task UpdateAsync(StudentUpdateDTO dto)
     {
-
-        Student oldStudent = await GetByIdAsync(dto.Id);
-        Student Student = _mapper.Map<Student>(dto);
-        Student.CreatedAt = oldStudent.CreatedAt;
-        Student.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("Student") : oldStudent.ImgUrl;
-        _writeRepo.Update(Student);
+        Student oldStudent = await GetByIdAsync(dto.StudentId);
+        Student student = _mapper.Map<Student>(dto);
+        student.CreatedAt = oldStudent.CreatedAt;
+        student.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("student") : oldStudent.ImgUrl;
+        _writeRepo.Update(student);
     }
 
     public async Task DeleteAsync(int id)
     {
-        Student Student = await GetByIdWithChildrenAsync(id);
+        Student student = await GetByIdWithChildrenAsync(id);
 
-        if (Student.EnrolledCourses.Count != 0) throw new BaseException("This Student has Students!");
+        if (student.StudentCourses.Count != 0)
+            throw new BaseException("This student is enrolled in courses!");
 
-        File.Delete(Path.Combine(Path.GetFullPath("wwwroot"), "uploads", "Student", Student.ImgUrl));
-        _writeRepo.Delete(Student);
+        File.Delete(Path.Combine(Path.GetFullPath("wwwroot"), "uploads", "student", student.ImgUrl));
+        _writeRepo.Delete(student);
     }
 
     public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();

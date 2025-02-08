@@ -1,37 +1,53 @@
 ﻿@model TeacherUpdateDTO
 
-<form class="container" method="POST">
-    <h2 class="my-4">Update Teacher</h2>
+<form class="container" method="POST" enctype="multipart/form-data">
+    <h2 class="my-4">Create Teacher</h2>
+
     <div class="mb-3">
         <label class="form-label" asp-for="Name"></label>
-        <input class="form-control" asp-for="Name" />
+        <input class="form-control" asp-for="Name" placeholder="Enter teacher's name" />
         <span class="text-danger" asp-validation-for="Name"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label" asp-for="Surname"></label>
-        <input class="form-control" asp-for="Surname" />
+        <input class="form-control" asp-for="Surname" placeholder="Enter teacher's surname" />
         <span class="text-danger" asp-validation-for="Surname"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label" asp-for="Subject"></label>
-        <input class="form-control" asp-for="Subject" />
+        <input class="form-control" asp-for="Subject" placeholder="Enter subject taught" />
         <span class="text-danger" asp-validation-for="Subject"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label" asp-for="Salary"></label>
-        <input class="form-control" asp-for="Salary" />
+        <input class="form-control" asp-for="Salary" placeholder="Enter teacher's salary" type="number" />
         <span class="text-danger" asp-validation-for="Salary"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label" asp-for="Image"></label>
-        <input class="form-control" asp-for="Image" />
+        <input type="file" class="form-control" asp-for="Image" />
         <span class="text-danger" asp-validation-for="Image"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label" asp-for="ExperienceYears"></label>
-        <input class="form-control" asp-for="ExperienceYears" />
+        <input class="form-control" asp-for="ExperienceYears" placeholder="Enter years of experience" type="number" />
         <span class="text-danger" asp-validation-for="ExperienceYears"></span>
     </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="CourseId">Select Course</label>
+        <select class="form-control" asp-for="CourseId" asp-items="@(ViewData["Courses"] as SelectList)">
+            <option value="">Select Course</option>
+        </select>
+        <span class="text-danger" asp-validation-for="CourseId"></span>
+    </div>
+
     <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+
+    <button type="submit" class="btn btn-primary">Save Teacher</button>
 </form>

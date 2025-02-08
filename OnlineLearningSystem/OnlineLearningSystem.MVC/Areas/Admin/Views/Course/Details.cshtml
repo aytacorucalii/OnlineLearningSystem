@@ -1,39 +1,23 @@
 ﻿@model Course
-
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Category Details</h6>
         </div>
         <div class="card-body">
+            <img style="width: 150px" src="~/uploads/course/@Model.ImgUrl" />
             <p>Id: @Model.Id</p>
             <p>Title: @Model.CourseName</p>
+            <p>Description: @Model.Description</p>
+            <p>Minimum price: @Model.Price</p>
+            <p>Rating: @Model.Rating</p>
+            <p>Rating count: @Model.RatingCount</p>
+            <p>Category: @Model.Teacher.Name</p>
+            <p>Active: @Model.IsDeleted</p>
             <p>Create time: @Model.CreatedAt</p>
             @if (Model.UpdatedAt is not null)
             {
                 <p>Update time: @Model.UpdatedAt</p>
-            }
-            @if (Model.EnrolledStudents.Count != 0)
-            {
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Active</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.EnrolledStudents)
-                        {
-                            <tr>
-                                <td>@item.Id</td>
-                                <td>@item.Name</td>
-                                <td>@item.Surname</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
             }
         </div>
     </div>

@@ -2,140 +2,148 @@
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnlineLearning.Core.Models;
 
-namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
-[Area("Admin")]
-public class StudentController : Controller
+namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
 {
-    readonly IStudentService _service;
-
-    public StudentController(IStudentService service)
+    [Area("Admin")]
+    public class StudentController : Controller
     {
-        _service = service;
-    }
+        private readonly IStudentService _service;
+        private readonly ICourseService _courseService;
 
-    public async Task<IActionResult> Index()
-    {
-        IEnumerable<StudentListItemDTO> list = await _service.GetStudentListItemsAsync();
-
-        return View(list);
-    }
-
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(StudentCreateDTO dto)
-    {
-        if (!ModelState.IsValid)
+        public StudentController(IStudentService service, ICourseService courseService)
         {
+            _service = service;
+            _courseService = courseService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var students = await _service.GetStudentListItemsAsync();
+            return View(students);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(StudentCreateDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+                return View(dto);
+            }
+
+            try
+            {
+                await _service.CreateAsync(dto); // StudentId avtomatik təyin olunacaq
+                await _service.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (BaseException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
+            }
+
+            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
             return View(dto);
         }
 
-        try
+        public async Task<IActionResult> Update(int id)
         {
-            await _service.CreateAsync(dto);
-            await _service.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-        catch (BaseException ex)
-        {
-            ModelState.AddModelError("CustomError", ex.Message);
-            return View(dto);
-        }
-        catch (Exception)
-        {
-            ModelState.AddModelError("CustomError", "Something went wrong!");
-            return View(dto);
-        }
-    }
-
-    public async Task<IActionResult> Update(int id)
-    {
-        try
-        {
-            return View(await _service.GetByIdForUpdateAsync(id));
-        }
-        catch (NotFoundException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (BaseException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception)
-        {
-            return BadRequest("Something went wrong!");
-        }
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Update(StudentUpdateDTO dto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(dto);
+            try
+            {
+                var student = await _service.GetByIdForUpdateAsync(id);
+                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+                return View(student);
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Tələbə tapılmadı.");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gözlənilməz bir xəta baş verdi!");
+            }
         }
 
-        try
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(StudentUpdateDTO dto)
         {
-            await _service.UpdateAsync(dto);
-            await _service.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-        catch (BaseException ex)
-        {
-            ModelState.AddModelError("CustomError", ex.Message);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+                return View(dto);
+            }
+
+            try
+            {
+                await _service.UpdateAsync(dto);
+                await _service.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (BaseException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
+            }
+
+            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
             return View(dto);
         }
-        catch (Exception)
-        {
-            ModelState.AddModelError("CustomError", "Something went wrong!");
-            return View(dto);
-        }
-    }
 
-    public async Task<IActionResult> Delete(int id)
-    {
-        try
+        public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
-            await _service.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                await _service.DeleteAsync(id);
+                await _service.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Tələbə tapılmadı.");
+            }
+            catch (BaseException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gözlənilməz bir xəta baş verdi!");
+            }
         }
-        catch (NotFoundException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (BaseException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception)
-        {
-            return BadRequest("Something went wrong!");
-        }
-    }
 
-    public async Task<IActionResult> Details(int id)
-    {
-        try
+        public async Task<IActionResult> Details(int id)
         {
-            return View(await _service.GetByIdWithChildrenAsync(id));
-        }
-        catch (NotFoundException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception)
-        {
-            return BadRequest("Something went wrong!");
+            try
+            {
+                var student = await _service.GetByIdWithChildrenAsync(id);
+                return View(student);
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Tələbə tapılmadı.");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gözlənilməz bir xəta baş verdi!");
+            }
         }
     }
-    
 }

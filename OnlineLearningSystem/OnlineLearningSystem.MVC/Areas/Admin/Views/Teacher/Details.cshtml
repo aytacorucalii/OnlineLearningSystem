@@ -3,37 +3,45 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Category Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Teacher Details</h6>
         </div>
         <div class="card-body">
-            <p>Id: @Model.Id</p>
-            <p>Title: @Model.Name</p>
-            <p>Create time: @Model.CreatedAt</p>
-            @if (Model.UpdatedAt is not null)
+            <p><strong>Id:</strong> @Model.Id</p>
+            <p><strong>Name:</strong> @Model.Name</p>
+            <p><strong>Created At:</strong> @Model.CreatedAt.ToString("MM/dd/yyyy")</p>
+
+            @if (Model.UpdatedAt != null)
             {
-                <p>Update time: @Model.UpdatedAt</p>
+                <p><strong>Updated At:</strong> @Model.UpdatedAt?.ToString("MM/dd/yyyy")</p>
             }
-            @if (Model.Courses.Count != 0)
+
+            @if (Model.Courses != null && Model.Courses.Any())
             {
+                <h5 class="mt-4">Courses:</h5>
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Price</th>
                             <th>Active</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Course item in Model.Courses)
+                        @foreach (var course in Model.Courses)
                         {
                             <tr>
-                                <td>@item.Id</td>
-                                <td>@item.CourseName</td>
-                                <td>@item.Price</td>
+                                <td>@course.Id</td>
+                                <td>@course.CourseName</td>
+                                <td>@course.Price</td>
                             </tr>
                         }
                     </tbody>
                 </table>
+            }
+            else
+            {
+                <p>No courses available for this teacher.</p>
             }
         </div>
     </div>

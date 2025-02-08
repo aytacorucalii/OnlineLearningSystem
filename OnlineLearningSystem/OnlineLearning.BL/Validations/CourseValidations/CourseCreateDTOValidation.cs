@@ -27,6 +27,6 @@ public class CourseCreateDTOValidation : AbstractValidator<CourseCreateDTO>
             .Cascade(CascadeMode.Stop)
             .NotNull().WithMessage("Image cannot be null!")
             .Must(x => x.Length <= 2 * 1024 * 1024).WithMessage("File size must be less than 2 MB!")
-            .Must(x => x.CheckType("image")).WithMessage("File must be image!");
+            .Must(x => x.ContentType.StartsWith("image/")).WithMessage("File must be an image!");
     }
 }

@@ -22,21 +22,6 @@ namespace OnlineLearning.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.Property<int>("EnrolledCoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EnrolledStudentsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnrolledCoursesId", "EnrolledStudentsId");
-
-                    b.HasIndex("EnrolledStudentsId");
-
-                    b.ToTable("CourseEnrollments", (string)null);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -172,13 +157,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ce28d7ca-9007-4eb9-893f-cc140348c40f",
+                            ConcurrencyStamp = "168981ca-8d71-4351-ad59-1168e1669e22",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDe1PvysfXiubiN5VOl1r4pqIZ0nLwM3jcQnUz35yNEgK6OJDeJv6xSRQr+wW0S1rA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECAXBXYQTiXn1YDdEvehF/mRrtaM2M+MA+d9lJ85ESQEVp9/4gc/RzMNppn80vhV9A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d551ff25-f1de-45fc-b56c-dbd35d01a323",
+                            SecurityStamp = "d998e5f3-2836-4b12-9c21-82e165d8dd03",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -402,7 +387,9 @@ namespace OnlineLearning.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EnrollmentDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2025, 2, 8, 17, 52, 26, 547, DateTimeKind.Utc).AddTicks(9071));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
@@ -438,6 +425,24 @@ namespace OnlineLearning.DAL.Migrations
                     b.ToTable("Students", (string)null);
                 });
 
+            modelBuilder.Entity("OnlineLearning.Core.Models.StudentCourse", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EnrollmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("StudentCourses");
+                });
+
             modelBuilder.Entity("OnlineLearning.Core.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -445,6 +450,12 @@ namespace OnlineLearning.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CourseId1")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -496,22 +507,9 @@ namespace OnlineLearning.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CourseId1");
+
                     b.ToTable("Teachers", (string)null);
-                });
-
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.HasOne("OnlineLearning.Core.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("EnrolledCoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OnlineLearning.Core.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("EnrolledStudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -574,6 +572,44 @@ namespace OnlineLearning.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.StudentCourse", b =>
+                {
+                    b.HasOne("OnlineLearning.Core.Models.Course", "Course")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Core.Models.Student", "Student")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.Teacher", b =>
+                {
+                    b.HasOne("OnlineLearning.Core.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId1");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.Course", b =>
+                {
+                    b.Navigation("StudentCourses");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.Student", b =>
+                {
+                    b.Navigation("StudentCourses");
                 });
 
             modelBuilder.Entity("OnlineLearning.Core.Models.Teacher", b =>

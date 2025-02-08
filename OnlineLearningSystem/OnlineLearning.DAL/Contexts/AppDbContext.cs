@@ -11,6 +11,7 @@ public class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string
 	public DbSet<Student> Students { get; set; }
 	public DbSet<Course> Courses { get; set; }
 	public DbSet<Statistics> Statistics { get; set; }
+	public DbSet<StudentCourse>StudentCourses { get; set; }
 
 	public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

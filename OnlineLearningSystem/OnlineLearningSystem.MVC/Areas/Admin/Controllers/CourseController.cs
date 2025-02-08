@@ -2,27 +2,32 @@
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
+using OnlineLearning.Core.Models;
 
 namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
 [Area("Admin")]
 public class CourseController : Controller
 {
     readonly ICourseService _service;
+    readonly ITeacherService _teacherService;
 
-    public CourseController(ICourseService service)
+    public CourseController(ICourseService service, ITeacherService teacherService)
     {
         _service = service;
+        _teacherService = teacherService;
     }
 
     public async Task<IActionResult> Index()
     {
-        IEnumerable<CourseListItemDTO> list = await _service.GetCourseListItemsAsync();
-
-        return View(list);
+        return await HandleServiceCall(async () => View(await _service.GetCourseListItemsAsync()));
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        // Teacher siyahısını əldə et və ViewData-ya əlavə et
+        var teachers = await _teacherService.GetTeacherListItemsAsync();
+        ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+
         return View();
     }
 
@@ -32,41 +37,30 @@ public class CourseController : Controller
     {
         if (!ModelState.IsValid)
         {
+            // Teacher siyahısını yenidən göndəririk, əgər səhv varsa
+            var teachers = await _teacherService.GetTeacherListItemsAsync();
+            ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+
+            // Error mesajı
+            ViewData["ErrorMessage"] = "Kursu yaratmaq mümkün olmadı. Xahiş edirik məlumatları yoxlayın.";
             return View(dto);
         }
 
-        try
+        return await HandleServiceCall(async () =>
         {
             await _service.CreateAsync(dto);
             await _service.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-        catch (BaseException ex)
-        {
-            ModelState.AddModelError("CustomError", ex.Message);
-            return View(dto);
-        }
-        catch (Exception)
-        {
-            ModelState.AddModelError("CustomError", "Something went wrong!");
-            return View(dto);
-        }
+        }, dto);
     }
 
     public async Task<IActionResult> Update(int id)
     {
-        try
-        {
-            return View(await _service.GetByIdForUpdateAsync(id));
-        }
-        catch (BaseException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception)
-        {
-            return BadRequest("Something went wrong!");
-        }
+        // Teacher siyahısını əldə edirik
+        var teachers = await _teacherService.GetTeacherListItemsAsync();
+        ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+
+        return await HandleServiceCall(async () => View(await _service.GetByIdForUpdateAsync(id)));
     }
 
     [HttpPost]
@@ -75,58 +69,55 @@ public class CourseController : Controller
     {
         if (!ModelState.IsValid)
         {
+            // Teacher siyahısını yenidən göndəririk, əgər səhv varsa
+            var teachers = await _teacherService.GetTeacherListItemsAsync();
+            ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+
+            // Error mesajı
+            ViewData["ErrorMessage"] = "Kursu yeniləmək mümkün olmadı. Xahiş edirik məlumatları yoxlayın.";
             return View(dto);
         }
 
-        try
+        return await HandleServiceCall(async () =>
         {
             await _service.UpdateAsync(dto);
             await _service.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-        catch (BaseException ex)
-        {
-            ModelState.AddModelError("CustomError", ex.Message);
-            return View(dto);
-        }
-        catch (Exception)
-        {
-            ModelState.AddModelError("CustomError", "Something went wrong!");
-            return View(dto);
-        }
+        }, dto);
     }
 
     public async Task<IActionResult> Delete(int id)
     {
-        try
+        return await HandleServiceCall(async () =>
         {
             await _service.DeleteAsync(id);
             await _service.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-        catch (BaseException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception)
-        {
-            return BadRequest("Something went wrong!");
-        }
+        });
     }
 
     public async Task<IActionResult> Details(int id)
     {
+        return await HandleServiceCall(async () => View(await _service.GetByIdWithChildrenAsync(id)));
+    }
+
+    private async Task<IActionResult> HandleServiceCall(Func<Task<IActionResult>> action, object? dto = null)
+    {
         try
         {
-            return View(await _service.GetByIdWithChildrenAsync(id));
+            return await action();
         }
         catch (BaseException ex)
         {
-            return BadRequest(ex.Message);
+            // Əgər dto varsa, səhv mesajını əlavə et
+            if (dto != null) ModelState.AddModelError("CustomError", ex.Message);
+            return dto == null ? BadRequest(ex.Message) : View(dto);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return BadRequest("Something went wrong!");
+            // Ümumi səhv mesajı
+            if (dto != null) ModelState.AddModelError("CustomError", "Something went wrong!");
+            return dto == null ? BadRequest("Something went wrong!") : View(dto);
         }
     }
 }

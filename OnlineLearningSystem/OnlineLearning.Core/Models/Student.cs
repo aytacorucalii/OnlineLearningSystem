@@ -5,14 +5,14 @@ namespace OnlineLearning.Core.Models;
 
 public class Student : BaseAuditable
 {
-	public string Name { get; set; }
-	public string Surname { get; set; }
-	public DateTime EnrollmentDate { get; set; } 
-	public string? ImgUrl { get; set; }
-	public Gender? Gender { get; set; }
-	public string Grade { get; set; }
-	public ICollection<Course> EnrolledCourses { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public DateTime EnrollmentDate { get; set; }
+    public string? ImgUrl { get; set; }
+    public Gender? Gender { get; set; }
+    public string Grade { get; set; }
+ 
 
-	//discount
-	//enrollment tarixi arasdir
+    // Many-to-Many əlaqəsi
+    public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
 }

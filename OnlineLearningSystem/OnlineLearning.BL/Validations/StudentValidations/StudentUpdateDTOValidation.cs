@@ -8,7 +8,7 @@ public class StudentUpdateDTOValidation : AbstractValidator<StudentUpdateDTO>
 {
     public StudentUpdateDTOValidation()
     {
-        RuleFor(e => e.Id)
+        RuleFor(e => e.StudentId)
            .GreaterThan(0).WithMessage("Id must be a natural number!");
 
         RuleFor(e => e.Name)
@@ -22,9 +22,7 @@ public class StudentUpdateDTOValidation : AbstractValidator<StudentUpdateDTO>
             .MaximumLength(255).WithMessage("The length of the surname cannot exceed 255 symbols!");
 
         RuleFor(x => x.Image)
-            .Cascade(CascadeMode.Stop)
-            .NotNull().WithMessage("Image cannot be null!")
-            .Must(x => x.Length <= 2 * 1024 * 1024).WithMessage("File size must be less than 2 MB!")
-            .Must(x => x.CheckType("image")).WithMessage("File must be image!");
+            .Must(x => x is null || x.Length <= 2 * 1024 * 1024).WithMessage("File size must be less than 2 MB!")
+            .Must(x => x is null || x.CheckType("image")).WithMessage("File must be image!");
     }
 }
