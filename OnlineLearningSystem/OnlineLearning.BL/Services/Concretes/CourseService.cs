@@ -10,18 +10,20 @@ namespace OnlineLearning.BL.Services.Concretes;
 
 public class CourseService : ICourseService
 {
-    readonly ICourseReadRepository _readRepo;
+    readonly ICourseReadRepository _readRepo; 
     readonly ICourseWriteRepository _writeRepo;
     readonly IMapper _mapper;
+    readonly IStatisticsService _statisticsService;
 
-    public CourseService(ICourseReadRepository readRepo, ICourseWriteRepository writeRepo, IMapper mapper)
-    {
-        _readRepo = readRepo;
-        _writeRepo = writeRepo;
-        _mapper = mapper;
-    }
+	public CourseService(ICourseReadRepository readRepo, ICourseWriteRepository writeRepo, IMapper mapper, IStatisticsService statisticsService)
+	{
+		_readRepo = readRepo;
+		_writeRepo = writeRepo;
+		_mapper = mapper;
+		_statisticsService = statisticsService;
+	}
 
-    public async Task<Course> GetByIdAsync(int id) =>
+	public async Task<Course> GetByIdAsync(int id) =>
         await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
 
     public async Task<Course> GetByIdWithChildrenAsync(int id) =>
@@ -41,7 +43,8 @@ public class CourseService : ICourseService
         Course course = _mapper.Map<Course>(dto);
         course.ImgUrl = await dto.Image.SaveAsync("course");
         await _writeRepo.CreateAsync(course);
-    }
+		await _statisticsService.IncrementCourseCount();
+	}
 
     public async Task UpdateAsync(CourseUpdateDTO dto)
     {

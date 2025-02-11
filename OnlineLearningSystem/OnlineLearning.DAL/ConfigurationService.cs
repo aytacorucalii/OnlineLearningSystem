@@ -16,5 +16,7 @@ public static class ConfigurationService
 		services.AddScoped<ITeacherWriteRepository, TeacherWriteRepository>();
 		services.AddScoped<IStudentReadRepository, StudentReadRepository>();
 		services.AddScoped<IStudentWriteRepository, StudentWriteRepository>();
-	}
+        services.AddScoped<IStatisticsReadRepository, StatisticsReadRepository>();
+        services.AddScoped<IStatisticsWriteRepository, StatisticsWriteRepository>();
+    }
 }

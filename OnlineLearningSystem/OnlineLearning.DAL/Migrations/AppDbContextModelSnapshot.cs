@@ -157,13 +157,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "168981ca-8d71-4351-ad59-1168e1669e22",
+                            ConcurrencyStamp = "45d60682-b174-4bf6-9557-851bed87cb2e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAECAXBXYQTiXn1YDdEvehF/mRrtaM2M+MA+d9lJ85ESQEVp9/4gc/RzMNppn80vhV9A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDoaxYhfBd0E5KayljOOCgGka0sA8m0JxohYtKrCnAQ1WnoTkgMzxzf/5t93eM4M9Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d998e5f3-2836-4b12-9c21-82e165d8dd03",
+                            SecurityStamp = "06d0625e-ce83-49c1-b974-0f5846112a7f",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -326,6 +326,66 @@ namespace OnlineLearning.DAL.Migrations
                     b.ToTable("Courses", (string)null);
                 });
 
+            modelBuilder.Entity("OnlineLearning.Core.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsSuccessful")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.PaymentResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ErrorMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentResults");
+                });
+
             modelBuilder.Entity("OnlineLearning.Core.Models.Statistics", b =>
                 {
                     b.Property<int>("Id")
@@ -389,7 +449,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 8, 17, 52, 26, 547, DateTimeKind.Utc).AddTicks(9071));
+                        .HasDefaultValue(new DateTime(2025, 2, 11, 10, 41, 4, 213, DateTimeKind.Utc).AddTicks(9853));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");

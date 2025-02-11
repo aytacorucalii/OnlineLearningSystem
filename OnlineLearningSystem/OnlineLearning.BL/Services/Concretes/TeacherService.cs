@@ -13,15 +13,17 @@ public class TeacherService : ITeacherService
     readonly ITeacherWriteRepository _writeRepo;
     readonly ITeacherReadRepository _readRepo;
     readonly IMapper _mapper;
+    readonly IStatisticsService _statisticsService;
 
-    public TeacherService(ITeacherWriteRepository writeRepo, ITeacherReadRepository readRepo, IMapper mapper)
-    {
-        _writeRepo = writeRepo;
-        _readRepo = readRepo;
-        _mapper = mapper;
-    }
+	public TeacherService(ITeacherWriteRepository writeRepo, ITeacherReadRepository readRepo, IMapper mapper, IStatisticsService statisticsService)
+	{
+		_writeRepo = writeRepo;
+		_readRepo = readRepo;
+		_mapper = mapper;
+		_statisticsService = statisticsService;
+	}
 
-    public async Task<Teacher> GetByIdAsync(int id) =>
+	public async Task<Teacher> GetByIdAsync(int id) =>
         await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
 
     public async Task<Teacher> GetByIdWithChildrenAsync(int id) =>
@@ -46,7 +48,8 @@ public class TeacherService : ITeacherService
         }
 
         await _writeRepo.CreateAsync(teacher);
-    }
+		await _statisticsService.IncrementTeacherCount();
+	}
 
     public async Task UpdateAsync(TeacherUpdateDTO dto)
     {

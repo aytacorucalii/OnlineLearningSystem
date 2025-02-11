@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using OnlineLearning.BL.DTOs;
 using OnlineLearning.Core.Models;
 
 namespace OnlineLearning.BL.Profiles;
@@ -14,3 +13,4 @@ public class CourseProfile : Profile
 		CreateMap<CourseViewItemDTO, Course>().ReverseMap();
 	}
 }
+

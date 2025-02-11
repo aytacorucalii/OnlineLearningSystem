@@ -1,0 +1,74 @@
+﻿@model PaymentDTO
+
+@{
+    ViewData["Title"] = "Ödəniş Başlat";
+}
+
+<h2>Ödəniş Başlat</h2>
+
+<form id="paymentForm">
+    <div>
+        <label for="amount">Məbləğ:</label>
+        <input type="number" id="amount" name="Amount" required />
+    </div>
+
+    <div>
+        <label for="cardNumber">Kart Nömrəsi:</label>
+        <input type="text" id="cardNumber" name="CardNumber" required />
+    </div>
+
+    <div>
+        <label for="method">Ödəniş Metodu:</label>
+        <select id="method" name="Method">
+            <option value="CreditCard">Kredit Kartı</option>
+            <option value="DebitCard">Debet Kartı</option>
+        </select>
+    </div>
+
+    <button type="submit">Ödənişi Başlat</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#paymentForm').submit(function (event) {
+                event.preventDefault();
+
+                var paymentData = {
+                    Amount: parseFloat($('#amount').val()), // Məbləği rəqəmə çeviririk
+                    CardNumber: $('#cardNumber').val(),
+                    Method: $('#method').val()
+                };
+
+                $.ajax({
+                    url: '/Admin/Payment/StartPayment', // Əgər `Area("Admin")` varsa, URL tam yazılmalıdır
+                    type: 'POST',
+                    data: JSON.stringify(paymentData),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Ödəniş Tamamlandı: ' + response.status);
+                        } else {
+                            alert('Ödəniş uğursuz oldu: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr.responseText);
+                        alert('Xəta baş verdi. Lütfən, yenidən cəhd edin.');
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+
+@section Scripts {
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log("Bu səhifədə jQuery işləyir!");
+        });
+    </script>
+}

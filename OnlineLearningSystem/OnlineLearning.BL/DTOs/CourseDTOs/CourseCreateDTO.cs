@@ -17,3 +17,4 @@ public class CourseCreateDTO
     // Seçilmiş kursların ID-ləri
     public List<int> CourseIds { get; set; } = new List<int>();
 }
+

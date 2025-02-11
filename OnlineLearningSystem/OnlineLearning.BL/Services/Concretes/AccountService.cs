@@ -52,4 +52,3 @@ public class AccountService : IAccountService
 		await _signInManager.SignOutAsync();
 	}
 }
-

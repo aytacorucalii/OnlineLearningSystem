@@ -19,3 +19,4 @@ public class Course : BaseAuditable
     // Many-to-Many əlaqəsi
     public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
 }
+

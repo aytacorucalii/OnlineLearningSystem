@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -29,11 +28,31 @@
 						<li><a asp-controller="Course" asp-action="Index">Course</a></li>
 						<li><a asp-controller="Teacher" asp-action="Index">Teachers</a></li>
 						<li><a href="">Contact</a></li>
-						<li>
-							<a href="">
-								<i class="fa-solid fa-magnifying-glass"></i>
-							</a>
-						</li>
+						<li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
+						@if (!User.Identity.IsAuthenticated)
+						{
+							<li class="header-top-contact">
+								<a asp-area="Admin" asp-controller="Account" asp-action="Login">sign in</a>
+							</li>
+							<li class="header-top-contact">
+								<a asp-area="Admin" asp-controller="Account" asp-action="Register">register</a>
+							</li>
+						}
+						else if (User.IsInRole(Roles.Admin.ToString()))
+						{
+							<li class="header-top-contact">
+								<a asp-area="Admin" asp-controller="Dashboard">panel</a>
+							</li>
+							<li class="header-top-contact">
+								<a asp-area="Admin" asp-controller="Account" asp-action="Logout">sign out</a>
+							</li>
+						}
+						else
+						{
+							<li class="header-top-contact">
+								<a asp-area="Admin" asp-controller="Account" asp-action="Logout">sign out</a>
+							</li>
+						}
 					</ul>
 				</div>
 			</div>

@@ -9,3 +9,4 @@ C:\Users\Hp\source\repos\OnlineLearningSystem\OnlineLearning.Core\obj\Debug\net8
 C:\Users\Hp\source\repos\OnlineLearningSystem\OnlineLearning.Core\obj\Debug\net8.0\refint\OnlineLearning.Core.dll
 C:\Users\Hp\source\repos\OnlineLearningSystem\OnlineLearning.Core\obj\Debug\net8.0\OnlineLearning.Core.pdb
 C:\Users\Hp\source\repos\OnlineLearningSystem\OnlineLearning.Core\obj\Debug\net8.0\ref\OnlineLearning.Core.dll
+C:\Users\Hp\source\repos\OnlineLearningSystem\OnlineLearning.Core\obj\Debug\net8.0\OnlineLearning.Core.csproj.AssemblyReference.cache

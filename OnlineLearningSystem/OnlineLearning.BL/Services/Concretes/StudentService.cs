@@ -12,16 +12,18 @@ public class StudentService : IStudentService
 {
     readonly IStudentReadRepository _readRepo;
     readonly IStudentWriteRepository _writeRepo;
+    readonly IStatisticsService _statisticsService;
     readonly IMapper _mapper;
 
-    public StudentService(IMapper mapper, IStudentWriteRepository writeRepo, IStudentReadRepository readRepo)
-    {
-        _mapper = mapper;
-        _writeRepo = writeRepo;
-        _readRepo = readRepo;
-    }
+	public StudentService(IMapper mapper, IStudentWriteRepository writeRepo, IStudentReadRepository readRepo, IStatisticsService statisticsService)
+	{
+		_mapper = mapper;
+		_writeRepo = writeRepo;
+		_readRepo = readRepo;
+		_statisticsService = statisticsService;
+	}
 
-    public async Task<Student> GetByIdAsync(int id) =>
+	public async Task<Student> GetByIdAsync(int id) =>
         await _readRepo.GetByIdAsync(id) ?? throw new BaseException();
 
     public async Task<Student> GetByIdWithChildrenAsync(int id) =>
@@ -41,8 +43,9 @@ public class StudentService : IStudentService
         Student student = _mapper.Map<Student>(dto);
         student.ImgUrl = await dto.Image.SaveAsync("student");
         await _writeRepo.CreateAsync(student);
-    }
+		await _statisticsService.IncrementStudentCount();
 
+	}
     public async Task UpdateAsync(StudentUpdateDTO dto)
     {
         Student oldStudent = await GetByIdAsync(dto.StudentId);

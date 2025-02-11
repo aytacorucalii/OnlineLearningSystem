@@ -14,8 +14,7 @@ public class Statistics : BaseEntity
 //search etme
 //sual verme
 //statistica deyismesi
-//payment
+//payment  var tam deyil
 //login olsun sonra payment
 // payment istese evvel login sonra payment
-//login register button
-//admin panel
+//admin panel var tam deyil

@@ -1,0 +1,26 @@
+﻿@model PaymentDTO
+
+@{
+    ViewData["Title"] = "Ödəniş Detalları";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Ödəniş Detalları</h5>
+        <p><strong>Ödəniş Tarixi:</strong> @Model.PaymentDate</p>
+        <p><strong>Məbləğ:</strong> @Model.Amount</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Kart Nömrəsi:</strong> @Model.CardNumber</p>
+
+        <a href="@Url.Action("Index", "Payment")" class="btn btn-secondary">Geri</a>
+    </div>
+</div>
