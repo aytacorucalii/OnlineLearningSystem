@@ -13,7 +13,8 @@ public class Statistics : BaseEntity
 
 //search etme
 //sual verme
-//statistica deyismesi
+//statistica deyismesi hazirdir
+//email gonderir
 //payment  var tam deyil
 //login olsun sonra payment
 // payment istese evvel login sonra payment

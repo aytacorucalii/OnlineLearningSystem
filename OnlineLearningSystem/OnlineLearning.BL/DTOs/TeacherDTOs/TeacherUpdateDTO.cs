@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class TeacherUpdateDTO
 {
@@ -11,5 +12,6 @@ public class TeacherUpdateDTO
     public decimal Salary { get; set; }
     public IFormFile? Image { get; set; }
     public int CourseId { get; set; }
-    public List<int> CourseIds { get; set; } // Kurs ID-ləri
+
+    public List<SelectListItem> Courses { get; set; } = new List<SelectListItem>();
 }

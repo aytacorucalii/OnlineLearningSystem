@@ -1,8 +1,8 @@
-﻿
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using OnlineLearning.BL.Services.Abstractions;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace OnlineLearning.BL.Services.Concretes;
 
@@ -10,55 +10,38 @@ public class EmailService : IEmailService
 {
 	private readonly IConfiguration _configuration;
 
-	// SMTP parametrlərini toplamaq üçün helper metodu əlavə edirik
-	private SmtpClient GetSmtpClient()
-	{
-		var smtpClient = new SmtpClient(_configuration["Email:Host"], Convert.ToInt32(_configuration["Email:Port"]))
-		{
-			EnableSsl = true,
-			Credentials = new NetworkCredential(_configuration["Email:Login"], _configuration["Email:Passcode"])
-		};
-		return smtpClient;
-	}
-
 	public EmailService(IConfiguration configuration)
 	{
 		_configuration = configuration;
 	}
 
-	// Ümumi email göndərmə metodu
-	private void SendEmail(string toUser, string subject, string body, bool isHtml = false)
+	private void Send(string toUser, string subject, string body, bool isHtml)
 	{
-		try
+		SmtpClient smtp = new SmtpClient(_configuration["Email:Host"], Convert.ToInt32(_configuration["Email:Port"]))
 		{
-			var smtpClient = GetSmtpClient();
-			var from = new MailAddress(_configuration["Email:Sender"]);
-			var to = new MailAddress(toUser);
-			var message = new MailMessage(from, to)
-			{
-				Subject = subject,
-				Body = body,
-				IsBodyHtml = isHtml
-			};
-			smtpClient.Send(message);
-		}
-		catch (Exception ex)
+			EnableSsl = true,
+			Credentials = new NetworkCredential(_configuration["Email:Login"], _configuration["Email:Passcode"])
+		};
+
+		MailMessage message = new MailMessage(
+			new MailAddress("aytacho-ab205@code.edu.az"),
+			new MailAddress(toUser))
 		{
-			Console.WriteLine($"Email göndərmə xətası: {ex.Message}");
-		}
+			Subject = subject,
+			Body = body,
+			IsBodyHtml = isHtml
+		};
+
+		smtp.Send(message);
 	}
 
-	// Sadə email göndərmək
 	public void SendEmail(string toUser)
 	{
-		string body = "Welcome to Our Page";
-		SendEmail(toUser, "Hello from Online Learning System", body);
+		Send(toUser, "Hello from Online Learning System", "Welcome to Our Page", false);
 	}
 
-	// Təsdiq emaili göndərmək
 	public void SendEmailConfirm(string toUser, string confirmUrl)
 	{
-		string body = $"<a href='{confirmUrl}'>Click here to confirm your email</a>";
-		SendEmail(toUser, "Confirm Email", body, true);
+		Send(toUser, "Confirm Email", $"<a href={confirmUrl}> Click here </a>", true);
 	}
 }

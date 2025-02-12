@@ -24,7 +24,6 @@ public class TeacherListItemDTOValidation : AbstractValidator<TeacherListItemDTO
             .MinimumLength(2).WithMessage("Surname must be at least 2 symbols long!")
             .MaximumLength(255).WithMessage("The length of the surname cannot exceed 255 symbols!");
 
-
         RuleFor(e => e.ExperienceYears)
             .NotEmpty().WithMessage("ExperienceYears cannot be empty!")
             .GreaterThanOrEqualTo(1).WithMessage("ExperienceYears must be 1 or greater!")

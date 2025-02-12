@@ -8,7 +8,7 @@ public class StudentUpdateDTOValidation : AbstractValidator<StudentUpdateDTO>
 {
     public StudentUpdateDTOValidation()
     {
-        RuleFor(e => e.StudentId)
+        RuleFor(e => e.Id)
            .GreaterThan(0).WithMessage("Id must be a natural number!");
 
         RuleFor(e => e.Name)

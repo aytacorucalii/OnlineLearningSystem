@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
@@ -30,7 +31,11 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
         {
             // Kursları ViewData ilə göndəririk
             var courses = await _courseService.GetCourseListItemsAsync();
-            ViewData["Courses"] = new SelectList(courses, "Id", "Name");
+            ViewBag.Courses = courses?.Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.CourseName,
+            }) ?? new List<SelectListItem>();
             return View();
         }
 
@@ -42,7 +47,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
             {
                 // Əgər form qeyri-düzgün doldurulubsa, kursları yenidən göndəririk
                 var courses = await _courseService.GetCourseListItemsAsync();
-                ViewData["Courses"] = new SelectList(courses, "Id", "Name",dto.CourseId);
+                ViewBag.Courses = new SelectList(courses, "Id", "Name",dto.CourseId); // Düzgün şəkildə ViewBag istifadə edilir
                 return View(dto);
             }
 
@@ -70,7 +75,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
             {
                 // Kursları ViewData ilə göndəririk
                 var courses = await _courseService.GetCourseListItemsAsync();
-                ViewData["Courses"] = new SelectList(courses, "Id", "Name");
+                ViewBag.Courses = new SelectList(courses, "Id", "Name"); // Düzgün şəkildə ViewBag istifadə edilir
 
                 return View(await _service.GetByIdForUpdateAsync(id));
             }
@@ -96,7 +101,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
             {
                 // Əgər form qeyri-düzgün doldurulubsa, kursları yenidən göndəririk
                 var courses = await _courseService.GetCourseListItemsAsync();
-                ViewData["Courses"] = new SelectList(courses, "Id", "Name", dto.CourseIds);
+                ViewBag.Courses = new SelectList(courses, "Id", "Name", dto.CourseId); // Düzgün şəkildə ViewBag istifadə edilir
                 return View(dto);
             }
 

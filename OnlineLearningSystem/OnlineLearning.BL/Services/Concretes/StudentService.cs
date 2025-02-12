@@ -48,7 +48,7 @@ public class StudentService : IStudentService
 	}
     public async Task UpdateAsync(StudentUpdateDTO dto)
     {
-        Student oldStudent = await GetByIdAsync(dto.StudentId);
+        Student oldStudent = await GetByIdAsync(dto.Id);
         Student student = _mapper.Map<Student>(dto);
         student.CreatedAt = oldStudent.CreatedAt;
         student.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("student") : oldStudent.ImgUrl;

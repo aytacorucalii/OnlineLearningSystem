@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnlineLearning.Core.Enums;
 
 public class CourseUpdateDTO
 {
@@ -8,9 +10,7 @@ public class CourseUpdateDTO
     public IFormFile Image { get; set; }
     public string ImgUrl { get; set; }
     public decimal Price { get; set; } // Kursun qiyməti
-    public string Duration { get; set; }
+    public CourseDuration? Duration { get; set; }
     public int TeacherId { get; set; } // Müəllim dəyişməsi üçün
 
-                                       // Seçilmiş kursların ID-ləri
-    public List<int> CourseIds { get; set; } = new List<int>();
 }

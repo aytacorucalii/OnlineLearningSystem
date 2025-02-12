@@ -1,60 +1,49 @@
-﻿<!-- Course Create View -->
-@model CourseCreateDTO
+﻿@model CourseCreateDTO
 
-<form class="container" method="POST" enctype="multipart/form-data">
-    <h2 class="my-4">Kurs Yarat</h2>
-
-    <!-- Kurs Adı -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="CourseName"></label>
-        <input class="form-control" asp-for="CourseName" />
-        <span class="text-danger" asp-validation-for="CourseName"></span>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="CourseName" class="control-label"></label>
+        <input asp-for="CourseName" class="form-control" />
+        <span asp-validation-for="CourseName" class="text-danger"></span>
     </div>
 
-    <!-- Təsvir -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="Description"></label>
-        <input class="form-control" asp-for="Description" />
-        <span class="text-danger" asp-validation-for="Description"></span>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <!-- Müddət -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="Duration"></label>
-        <input class="form-control" asp-for="Duration" type="number" min="1" />
-        <span class="text-danger" asp-validation-for="Duration"></span>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" type="number" class="form-control" step="0.01" />
+        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 
-    <!-- Qiymət -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="Price"></label>
-        <input class="form-control" asp-for="Price" type="number" step="0.01" min="0" />
-        <span class="text-danger" asp-validation-for="Price"></span>
+    <div class="form-group">
+        <label asp-for="Duration" class="control-label"></label>
+        <select asp-for="Duration" asp-items="Html.GetEnumSelectList<CourseDuration>()" class="form-control">
+            <option value="">Select Duration</option>
+        </select>
+        <span asp-validation-for="Duration" class="text-danger"></span>
     </div>
 
-    <!-- Müəllim -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="TeacherId"></label>
-        <select class="form-control" asp-for="TeacherId">
-            <option value="">Müəllim Seçin</option>
-            @foreach (var teacher in ViewData["Teachers"] as List<TeacherListItemDTO>)
+    <div class="form-group">
+        <label asp-for="TeacherId" class="control-label"></label>
+        <select asp-for="TeacherId" class="form-control">
+            <option value="">Select Teacher</option>
+            @foreach (var teacher in ViewBag.Teachers as List<SelectListItem>)
             {
-                <option value="@teacher.Id">@teacher.Name @teacher.Surname</option>
+                <option value="@teacher.Value">@teacher.Text</option>
             }
         </select>
-        <span class="text-danger" asp-validation-for="TeacherId"></span>
+        <span asp-validation-for="TeacherId" class="text-danger"></span>
     </div>
 
-    <!-- Şəkil -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="Image"></label>
-        <input class="form-control" asp-for="Image" type="file" />
-        <span class="text-danger" asp-validation-for="Image"></span>
+    <div class="form-group">
+        <label asp-for="Image" class="control-label"></label>
+        <input asp-for="Image" type="file" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
 
-    <!-- Xüsusi səhv mesajı -->
-    <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>
-
-    <!-- Göndərmə düyməsi -->
-    <button type="submit" class="btn btn-primary">Dəyişiklikləri Saxla</button>
+    <button type="submit" class="btn btn-primary">Create Course</button>
 </form>

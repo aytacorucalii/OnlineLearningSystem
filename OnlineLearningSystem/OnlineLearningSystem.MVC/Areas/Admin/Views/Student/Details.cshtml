@@ -1,39 +1,62 @@
 ﻿@model Student
 
+@{
+    ViewData["Title"] = "Tələbə Detalları";
+}
+
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tələbə Detalları</h6>
         </div>
         <div class="card-body">
-            <p><strong>Id:</strong> @Model.Id</p>
-            <p><strong>Name:</strong> @Model.Name</p>
-            <p><strong>Surname:</strong> @Model.Surname</p>
-            <p><strong>Enrollment Date:</strong> @Model.EnrollmentDate.ToString("MM/dd/yyyy")</p>
-            <p><strong>Create Time:</strong> @Model.CreatedAt.ToString("MM/dd/yyyy HH:mm:ss")</p>
-            @if (Model.UpdatedAt != null)
-            {
-                <p><strong>Update Time:</strong> @Model.UpdatedAt?.ToString("MM/dd/yyyy HH:mm:ss")</p>
-            }
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><strong>Ad:</strong> @Model.Name</h5>
+                    <h5><strong>Soyad:</strong> @Model.Surname</h5>
+                    <h5><strong>Qeydiyyat Tarixi:</strong> @Model.EnrollmentDate.ToString("dd/MM/yyyy")</h5>
+                    <h5><strong>Dərəcə:</strong> @Model.Grade?.ToString()</h5>
+                    <h5><strong>Cinsiyyət:</strong> @Model.Gender?.ToString()</h5>
+                </div>
+
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ImgUrl))
+                    {
+                        <img src="@Model.ImgUrl" alt="Tələbə Şəkli" class="img-thumbnail" style="width: 150px;" />
+                    }
+                    else
+                    {
+                        <p>Şəkil mövcud deyil.</p>
+                    }
+                </div>
+
+                <div class="col-md-4">
+                    <h5><strong>Yaradılma Zamanı:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")</h5>
+                    @if (Model.UpdatedAt != null)
+                    {
+                        <h5><strong>Yenilənmə Zamanı:</strong> @Model.UpdatedAt?.ToString("dd/MM/yyyy HH:mm:ss")</h5>
+                    }
+                </div>
+            </div>
 
             @if (Model.StudentCourses?.Any() == true)
             {
-                <h6 class="mt-4">Enrolled Courses</h6>
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <h5 class="mt-4">Qeydiyyat olunan Kurslar</h5>
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Price</th>
+                            <th>Kursun Adı</th>
+                            <th>Qiymət</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.StudentCourses)
+                        @foreach (var studentCourse in Model.StudentCourses)
                         {
                             <tr>
-                                <td>@item.CourseId</td>
-                                <td>@item.Course?.CourseName</td>
-                                <td>@item.Course?.Price</td>
+                                <td>@studentCourse.CourseId</td>
+                                <td>@studentCourse.Course?.CourseName</td>
+                                <td>@studentCourse.Course?.Price</td>
                             </tr>
                         }
                     </tbody>
@@ -41,8 +64,12 @@
             }
             else
             {
-                <p class="text-muted">This student is not enrolled in any courses.</p>
+                <p class="text-muted">Tələbə heç bir kursa qeydiyyatdan keçməyib.</p>
             }
+
+            <div class="mt-4">
+                <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Geri Qayıt</a>
+            </div>
         </div>
     </div>
 </div>

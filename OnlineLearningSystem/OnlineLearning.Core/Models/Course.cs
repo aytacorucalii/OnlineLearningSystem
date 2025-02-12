@@ -1,4 +1,5 @@
-﻿using OnlineLearning.Core.Models.Base;
+﻿using OnlineLearning.Core.Enums;
+using OnlineLearning.Core.Models.Base;
 
 namespace OnlineLearning.Core.Models;
 
@@ -10,7 +11,7 @@ public class Course : BaseAuditable
     public decimal Rating { get; set; }
     public int RatingCount { get; set; }
     public string ImgUrl { get; set; }
-    public string Duration { get; set; } // Kurs müddəti (məsələn: "12 Weeks")
+    public CourseDuration? Duration { get; set; } 
 
     // Hər kursun bir müəllimi olur (One-to-Many əlaqə)
     public int TeacherId { get; set; }

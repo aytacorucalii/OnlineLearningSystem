@@ -1,54 +1,58 @@
 ﻿@model TeacherCreateDTO
 
-<form class="container" method="POST" enctype="multipart/form-data">
-    <h2 class="my-4">Create Teacher</h2>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Müəllim Əlavə Et</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Name">Ad</label>
+                    <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+                </div>
 
-    <div class="mb-3">
-        <label class="form-label" asp-for="Name"></label>
-        <input class="form-control" asp-for="Name" placeholder="teacher's name" />
-        <span class="text-danger" asp-validation-for="Name"></span>
+                <div class="form-group">
+                    <label for="Surname">Soyad</label>
+                    <input type="text" class="form-control" id="Surname" name="Surname" value="@Model.Surname" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Subject">Fənn</label>
+                    <input type="text" class="form-control" id="Subject" name="Subject" value="@Model.Subject" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="ExperienceYears">Təcrübə ili</label>
+                    <input type="number" class="form-control" id="ExperienceYears" name="ExperienceYears" value="@Model.ExperienceYears" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Salary">Maaş</label>
+                    <input type="number" step="0.01" class="form-control" id="Salary" name="Salary" value="@Model.Salary" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="CourseId">Kurs</label>
+                    <select class="form-control" id="CourseId" name="CourseId" required>
+                        <option value="">Kurs seçin</option>
+                        @if (ViewBag.Courses != null)
+                        {
+                            @foreach (var course in ViewBag.Courses as IEnumerable<SelectListItem>)
+                            {
+                                <option value="@course.Value">@course.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Image">Şəkil (optional)</label>
+                    <input type="file" class="form-control-file" id="Image" name="Image" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Əlavə Et</button>
+            </form>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="Surname"></label>
-        <input class="form-control" asp-for="Surname" placeholder="teacher's surname" />
-        <span class="text-danger" asp-validation-for="Surname"></span>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="Subject"></label>
-        <input class="form-control" asp-for="Subject" placeholder="subject taught" />
-        <span class="text-danger" asp-validation-for="Subject"></span>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="Salary"></label>
-        <input class="form-control" asp-for="Salary" placeholder="teacher's salary" type="number" />
-        <span class="text-danger" asp-validation-for="Salary"></span>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="Image"></label>
-        <input type="file" class="form-control" asp-for="Image" />
-        <span class="text-danger" asp-validation-for="Image"></span>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="ExperienceYears"></label>
-        <input class="form-control" asp-for="ExperienceYears" placeholder="experience" type="number" />
-        <span class="text-danger" asp-validation-for="ExperienceYears"></span>
-    </div>
-
-    <!-- Kurs seçimə əlavə et -->
-    <div class="mb-3">
-        <label class="form-label" for="CourseId">Select Course</label>
-        <select class="form-control" asp-for="CourseId" asp-items="@(ViewData["Courses"] as SelectList)">
-            <option value="">Select Course</option>
-        </select>
-        <span class="text-danger" asp-validation-for="CourseId"></span>
-    </div>
-
-    <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>
-
-    <button type="submit" class="btn btn-primary">Save Teacher</button>
-</form>
+</div>

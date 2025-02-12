@@ -12,8 +12,8 @@ using OnlineLearning.DAL.Contexts;
 namespace OnlineLearning.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250209125007_Initial")]
-    partial class Initial
+    [Migration("20250212145833_OneToMany")]
+    partial class OneToMany
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,13 +160,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "280fb379-f744-4827-a873-50ad642f1a18",
+                            ConcurrencyStamp = "5fc2ea84-4f50-4ca4-9ff4-b946ed387529",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBNvnsrWWrKBEZI+ag8dW1hhhkUNZCRGGHzSWi4Y99FfpD+Lwsf0NWvpzEOsOm/zDQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMCMSHEnMGeFUN8I4+4KXbCb/rmUO38RufLhZrCvoGDgHlAQQgotv5iPrHcJBpYc7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4fb9a6cb-45a4-450e-b7de-cc1334c0cf0b",
+                            SecurityStamp = "9851f6d0-0645-4414-9e65-4159917c96d8",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -290,10 +290,9 @@ namespace OnlineLearning.DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Duration")
-                        .IsRequired()
+                    b.Property<int>("Duration")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
@@ -327,6 +326,66 @@ namespace OnlineLearning.DAL.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Courses", (string)null);
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsSuccessful")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.PaymentResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ErrorMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentResults");
                 });
 
             modelBuilder.Entity("OnlineLearning.Core.Models.Statistics", b =>
@@ -392,14 +451,13 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 9, 12, 50, 6, 110, DateTimeKind.Utc).AddTicks(6304));
+                        .HasDefaultValue(new DateTime(2025, 2, 12, 14, 58, 33, 186, DateTimeKind.Utc).AddTicks(7593));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("Grade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Grade")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("nvarchar(max)");
@@ -454,12 +512,6 @@ namespace OnlineLearning.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId1")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -509,8 +561,6 @@ namespace OnlineLearning.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId1");
 
                     b.ToTable("Teachers", (string)null);
                 });
@@ -594,15 +644,6 @@ namespace OnlineLearning.DAL.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("OnlineLearning.Core.Models.Teacher", b =>
-                {
-                    b.HasOne("OnlineLearning.Core.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId1");
-
-                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("OnlineLearning.Core.Models.Course", b =>

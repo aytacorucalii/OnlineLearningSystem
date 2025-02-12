@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
@@ -24,9 +25,12 @@ public class CourseController : Controller
 
     public async Task<IActionResult> Create()
     {
-        // Teacher siyahısını əldə et və ViewData-ya əlavə et
         var teachers = await _teacherService.GetTeacherListItemsAsync();
-        ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+        ViewBag.Teachers = teachers.Select(t => new SelectListItem
+        {
+            Value = t.Id.ToString(),
+            Text = t.Name // və ya hansısa bir başqa xüsusiyyət
+        }) ?? new List<SelectListItem>();
 
         return View();
     }
@@ -37,9 +41,12 @@ public class CourseController : Controller
     {
         if (!ModelState.IsValid)
         {
-            // Teacher siyahısını yenidən göndəririk, əgər səhv varsa
             var teachers = await _teacherService.GetTeacherListItemsAsync();
-            ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+            ViewBag.Teachers = teachers.Select(t => new SelectListItem
+            {
+                Value = t.Id.ToString(),
+                Text = t.Name // və ya hansısa bir başqa xüsusiyyət
+            }) ?? new List<SelectListItem>();
 
             // Error mesajı
             ViewData["ErrorMessage"] = "Kursu yaratmaq mümkün olmadı. Xahiş edirik məlumatları yoxlayın.";
@@ -56,9 +63,12 @@ public class CourseController : Controller
 
     public async Task<IActionResult> Update(int id)
     {
-        // Teacher siyahısını əldə edirik
         var teachers = await _teacherService.GetTeacherListItemsAsync();
-        ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+        ViewBag.Teachers = teachers.Select(t => new SelectListItem
+        {
+            Value = t.Id.ToString(),
+            Text = t.Name // və ya hansısa bir başqa xüsusiyyət
+        }) ?? new List<SelectListItem>();
 
         return await HandleServiceCall(async () => View(await _service.GetByIdForUpdateAsync(id)));
     }
@@ -71,7 +81,11 @@ public class CourseController : Controller
         {
             // Teacher siyahısını yenidən göndəririk, əgər səhv varsa
             var teachers = await _teacherService.GetTeacherListItemsAsync();
-            ViewData["Teachers"] = teachers ?? new List<TeacherListItemDTO>(); // Null yoxlaması
+            ViewBag.Teachers = teachers.Select(t => new SelectListItem
+            {
+                Value = t.Id.ToString(),
+                Text = t.Name // və ya hansısa bir başqa xüsusiyyət
+            }) ?? new List<SelectListItem>(); // Null yoxlaması
 
             // Error mesajı
             ViewData["ErrorMessage"] = "Kursu yeniləmək mümkün olmadı. Xahiş edirik məlumatları yoxlayın.";

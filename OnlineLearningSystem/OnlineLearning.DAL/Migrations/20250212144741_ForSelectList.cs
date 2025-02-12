@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlineLearning.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Statistics : Migration
+    public partial class ForSelectList : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,17 +16,17 @@ namespace OnlineLearning.DAL.Migrations
                 table: "Students",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2025, 2, 11, 10, 41, 4, 213, DateTimeKind.Utc).AddTicks(9853),
+                defaultValue: new DateTime(2025, 2, 12, 14, 47, 40, 439, DateTimeKind.Utc).AddTicks(316),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2025, 2, 9, 20, 36, 33, 452, DateTimeKind.Utc).AddTicks(3289));
+                oldDefaultValue: new DateTime(2025, 2, 12, 14, 42, 5, 194, DateTimeKind.Utc).AddTicks(1765));
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "45d60682-b174-4bf6-9557-851bed87cb2e", "AQAAAAIAAYagAAAAEDoaxYhfBd0E5KayljOOCgGka0sA8m0JxohYtKrCnAQ1WnoTkgMzxzf/5t93eM4M9Q==", "06d0625e-ce83-49c1-b974-0f5846112a7f" });
+                values: new object[] { "7f29378b-3bef-43d9-a5b8-b89043b4b9ad", "AQAAAAIAAYagAAAAEGYTS+Adx5v5i3E7EO9Yyu8eGd94E7n++jjQ9PWCcc3Xo8yQOAgOAqsEUKmxinadeA==", "0e931057-db60-436d-b1f1-f3328b9fd9c4" });
         }
 
         /// <inheritdoc />
@@ -37,17 +37,17 @@ namespace OnlineLearning.DAL.Migrations
                 table: "Students",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2025, 2, 9, 20, 36, 33, 452, DateTimeKind.Utc).AddTicks(3289),
+                defaultValue: new DateTime(2025, 2, 12, 14, 42, 5, 194, DateTimeKind.Utc).AddTicks(1765),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2025, 2, 11, 10, 41, 4, 213, DateTimeKind.Utc).AddTicks(9853));
+                oldDefaultValue: new DateTime(2025, 2, 12, 14, 47, 40, 439, DateTimeKind.Utc).AddTicks(316));
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "4c125bb8-4c90-45d2-a50d-076d2284db15", "AQAAAAIAAYagAAAAEMRTAynBsSNLwxNZqGbGnAbnxMvhpzIOOs1rGz2JZEKsjhFEWRg9NKw2onGkrz3AkQ==", "af210070-9d3d-49e3-abfa-5e8d4d4248ea" });
+                values: new object[] { "54d7f551-3901-479d-8112-a5003b3ce37d", "AQAAAAIAAYagAAAAEDRY54dsI50FJdyVdwYWKRETTjaVQcF0ZkPdox64dP1Lpca2WZRnpRsm1BfQWTxFhg==", "2b640e79-41ad-4a26-8267-34c85033b209" });
         }
     }
 }

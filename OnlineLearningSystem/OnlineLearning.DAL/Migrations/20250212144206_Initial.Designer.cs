@@ -12,8 +12,8 @@ using OnlineLearning.DAL.Contexts;
 namespace OnlineLearning.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250211104105_Statistics")]
-    partial class Statistics
+    [Migration("20250212144206_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,13 +160,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "45d60682-b174-4bf6-9557-851bed87cb2e",
+                            ConcurrencyStamp = "54d7f551-3901-479d-8112-a5003b3ce37d",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDoaxYhfBd0E5KayljOOCgGka0sA8m0JxohYtKrCnAQ1WnoTkgMzxzf/5t93eM4M9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDRY54dsI50FJdyVdwYWKRETTjaVQcF0ZkPdox64dP1Lpca2WZRnpRsm1BfQWTxFhg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "06d0625e-ce83-49c1-b974-0f5846112a7f",
+                            SecurityStamp = "2b640e79-41ad-4a26-8267-34c85033b209",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -290,10 +290,9 @@ namespace OnlineLearning.DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Duration")
-                        .IsRequired()
+                    b.Property<int>("Duration")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()
@@ -452,14 +451,13 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 11, 10, 41, 4, 213, DateTimeKind.Utc).AddTicks(9853));
+                        .HasDefaultValue(new DateTime(2025, 2, 12, 14, 42, 5, 194, DateTimeKind.Utc).AddTicks(1765));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("Grade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Grade")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("nvarchar(max)");

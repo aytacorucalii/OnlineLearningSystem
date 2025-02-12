@@ -1,9 +1,11 @@
-﻿public class CourseViewItemDTO
+﻿using OnlineLearning.Core.Enums;
+
+public class CourseViewItemDTO
 {
     public string CourseName { get; set; }
     public string Description { get; set; }
     public decimal Price { get; set; } // Kursun qiyməti
-    public string Duration { get; set; }
+    public CourseDuration Duration { get; set; }
     public string ImgUrl { get; set; }
     public string TeacherName { get; set; } // Müəllimin adı
     public decimal Rating { get; set; } // Kursun qiymətləndirməsi

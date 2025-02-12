@@ -1,5 +1,4 @@
 ﻿using OnlineLearning.Core.Enums;
-using OnlineLearning.Core.Models.Base;
 
 namespace OnlineLearning.Core.Models;
 public class Payment

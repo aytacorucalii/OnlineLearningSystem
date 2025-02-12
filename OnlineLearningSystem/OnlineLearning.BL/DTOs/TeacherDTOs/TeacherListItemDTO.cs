@@ -4,6 +4,7 @@
     public string Name { get; set; }
     public string Surname { get; set; }
     public string Subject { get; set; } // Fənn
+    public decimal Salary { get; set; }
+    public string CourseName { get; set; }
     public int ExperienceYears { get; set; }
-    public List<int> CourseIds { get; set; } // Kurs ID-ləri
 }

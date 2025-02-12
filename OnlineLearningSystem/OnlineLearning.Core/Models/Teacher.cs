@@ -12,8 +12,6 @@ public class Teacher : BaseAuditable
     public Gender? Gender { get; set; }
     public decimal Salary { get; set; }
     public string ImgUrl { get; set; }
-    public int CourseId { get; set; }   
-    public Course? Course { get; set; }
 
     // Bir müəllimin bir neçə kursu ola bilər
     public ICollection<Course> Courses { get; set; } = new List<Course>();

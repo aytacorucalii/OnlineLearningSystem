@@ -1,20 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OnlineLearning.Core.Enums;
 
 public class CourseCreateDTO
 {
     public string CourseName { get; set; }
     public string Description { get; set; }
-    public decimal Price { get; set; } // Kursun qiyməti
-    public string Duration { get; set; } // Müddət
-    public IFormFile Image { get; set; } // Şəkil
-
-    // Yeni müəllimi təyin etmək üçün
+    public decimal Price { get; set; }
+    public CourseDuration? Duration { get; set; }
+    public IFormFile? Image { get; set; }  // Şəkil faylı üçün
+    public string ImgUrl { get; set; }  // Fayl yükləndikdən sonra URL təyin ediləcək
     public int TeacherId { get; set; }
-
-    // Şəkil yükləndikdən sonra URL-i saxlamaq üçün
-    public string ImgUrl { get; set; }
-    // Seçilmiş kursların ID-ləri
-    public List<int> CourseIds { get; set; } = new List<int>();
 }
 

@@ -10,7 +10,7 @@ public class Student : BaseAuditable
     public DateTime EnrollmentDate { get; set; }
     public string? ImgUrl { get; set; }
     public Gender? Gender { get; set; }
-    public string Grade { get; set; }
+    public Grade? Grade { get; set; }
  
 
     // Many-to-Many əlaqəsi
