@@ -157,13 +157,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5fc2ea84-4f50-4ca4-9ff4-b946ed387529",
+                            ConcurrencyStamp = "af1b4563-6409-4bb0-b1ec-71f96f5b5f5b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMCMSHEnMGeFUN8I4+4KXbCb/rmUO38RufLhZrCvoGDgHlAQQgotv5iPrHcJBpYc7g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKW55GTcCDgT3vvZtnrp4VfuGZ2saLdK00aGhYiVJng5i85t9nsKRljVPpQyc6yUhA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9851f6d0-0645-4414-9e65-4159917c96d8",
+                            SecurityStamp = "14cc6fdf-7feb-4a9a-9708-132fb4672c8f",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -336,14 +336,30 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("CancelUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SessionUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("SuccessUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -383,6 +399,27 @@ namespace OnlineLearning.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PaymentResults");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Core.Models.Settings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("OnlineLearning.Core.Models.Statistics", b =>
@@ -448,7 +485,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 12, 14, 58, 33, 186, DateTimeKind.Utc).AddTicks(7593));
+                        .HasDefaultValue(new DateTime(2025, 2, 20, 13, 29, 24, 618, DateTimeKind.Utc).AddTicks(6130));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");

@@ -1,4 +1,6 @@
-﻿public class TeacherListItemDTO
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+public class TeacherListItemDTO
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -7,4 +9,5 @@
     public decimal Salary { get; set; }
     public string CourseName { get; set; }
     public int ExperienceYears { get; set; }
+
 }

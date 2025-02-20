@@ -21,7 +21,7 @@ public class AccountController : Controller
 	public IActionResult Login()
 	{
 		if (User.Identity is not null && User.Identity.IsAuthenticated)
-			return Redirect(User.IsInRole(Roles.Admin.ToString()) ? "/admin" : "/");
+			return Redirect(User.IsInRole(Roles.Admin.ToString()) ? "/admin/dashboard" : "/");
 
 		return View();
 	}
@@ -50,13 +50,13 @@ public class AccountController : Controller
 			return View(dto);
 		}
 
-		return Redirect(returnUrl ?? (User.IsInRole(Roles.Admin.ToString()) ? "/admin" : "/"));
+		return Redirect(returnUrl ?? (User.IsInRole(Roles.Admin.ToString()) ? "/admin/dashboard" : "/"));
 	}
 
 	public IActionResult Register()
 	{
 		if (User.Identity is not null && User.Identity.IsAuthenticated)
-			return Redirect(User.IsInRole(Roles.Admin.ToString()) ? "/admin" : "/");
+			return Redirect(User.IsInRole(Roles.Admin.ToString()) ? "/admin/dashboard" : "/");
 
 		return View();
 	}

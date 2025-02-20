@@ -22,7 +22,9 @@ public static class ConfigurationServices
 		services.AddScoped<IStudentService, StudentService>();
 		services.AddScoped<ICourseService, CourseService>();
 		services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IStripeService, StripeService>();
         services.AddScoped<IStatisticsService, StatisticsService>();
 		services.AddScoped<IEmailService, EmailService>();
+		services.AddScoped<ILayoutService, LayoutService>();
 	}
 }

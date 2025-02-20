@@ -27,7 +27,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+            ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
             return View();
         }
 
@@ -37,7 +37,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 return View(dto);
             }
 
@@ -49,14 +49,16 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
             }
             catch (BaseException ex)
             {
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 ModelState.AddModelError("", ex.Message);
             }
             catch (Exception)
             {
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
             }
 
-            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+
             return View(dto);
         }
 
@@ -64,9 +66,9 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
         {
             try
             {
-                var student = await _service.GetByIdForUpdateAsync(id);
-                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
-                return View(student);
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
+
+                return View(await _service.GetByIdForUpdateAsync(id));
             }
             catch (NotFoundException)
             {
@@ -84,7 +86,7 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 return View(dto);
             }
 
@@ -96,14 +98,16 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
             }
             catch (BaseException ex)
             {
+
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 ModelState.AddModelError("", ex.Message);
             }
             catch (Exception)
             {
+                ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
                 ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
             }
 
-            ViewBag.Courses = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "Name");
             return View(dto);
         }
 

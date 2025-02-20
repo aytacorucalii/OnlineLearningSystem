@@ -1,0 +1,17 @@
+﻿@model Payment
+
+<form method="post" asp-action="CreatePaymentSession">
+    <label for="Amount">Amount</label>
+    <input type="text" id="Amount" name="Amount" value="@Model.Amount" />
+
+    <label for="Currency">Currency</label>
+    <input type="text" id="Currency" name="Currency" value="@Model.Currency" />
+
+    <label for="SuccessUrl">Success URL</label>
+    <input type="text" id="SuccessUrl" name="SuccessUrl" value="@Model.SuccessUrl" />
+
+    <label for="CancelUrl">Cancel URL</label>
+    <input type="text" id="CancelUrl" name="CancelUrl" value="@Model.CancelUrl" />
+
+    <button type="submit">Pay Now</button>
+</form>

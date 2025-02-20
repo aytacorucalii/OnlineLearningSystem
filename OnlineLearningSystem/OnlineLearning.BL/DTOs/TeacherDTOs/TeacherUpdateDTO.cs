@@ -11,7 +11,4 @@ public class TeacherUpdateDTO
     public string ImgUrl { get; set; }
     public decimal Salary { get; set; }
     public IFormFile? Image { get; set; }
-    public int CourseId { get; set; }
-
-    public List<SelectListItem> Courses { get; set; } = new List<SelectListItem>();
 }

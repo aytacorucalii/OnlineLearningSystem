@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.BL.Services.Abstractions;
-using OnlineLearning.Core.Models;
 using OnlineLearningSystem.MVC.ViewModels;
 
 namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
-
+[Area("Admin")]
 public class StatisticsController : Controller
 {
     private readonly IStatisticsService _statisticsService;
@@ -18,12 +17,8 @@ public class StatisticsController : Controller
     {
 		try
 		{
-			HomeVM VM = new()
-			{
-				Statistics = new List<StatisticsDTO> { await _statisticsService.GetStatisticsAsync() }
-			};
-
-			return View(VM);
+			StatisticsDTO statistics = await _statisticsService.GetStatisticsAsync();
+			return View(statistics);
 		}
 		catch (Exception)
 		{

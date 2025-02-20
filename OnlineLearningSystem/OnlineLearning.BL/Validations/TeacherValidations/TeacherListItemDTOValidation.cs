@@ -28,6 +28,8 @@ public class TeacherListItemDTOValidation : AbstractValidator<TeacherListItemDTO
             .NotEmpty().WithMessage("ExperienceYears cannot be empty!")
             .GreaterThanOrEqualTo(1).WithMessage("ExperienceYears must be 1 or greater!")
             .LessThanOrEqualTo(60).WithMessage("ExperienceYears must be 60 or less than that!");
-
+          //RuleFor(teacher => teacher.CourseName)
+          //  .Must((teacher, courseName) => teacher.Courses.Any(c => c. == courseName))
+          //  .WithMessage("Course name must match one of the teacher's courses.");
     }
 }
