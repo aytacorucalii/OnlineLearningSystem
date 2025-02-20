@@ -33,8 +33,8 @@
 						<li><a asp-controller="About" asp-action="Index">About</a></li>
 						<li><a asp-controller="Course" asp-action="Index">Course</a></li>
 						<li><a asp-controller="Teacher" asp-action="Index">Teachers</a></li>
-						<li><a href="">Contact</a></li>
-						<li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
+						<li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+						<li><a asp-controller="Course" asp-action="SearchCourses"><i class="fa-solid fa-magnifying-glass"></i></a></li>
 						@if (!User.Identity.IsAuthenticated)
 						{
 							<li class="header-top-contact">
@@ -85,5 +85,6 @@
 			<p class="design-credit">Designed by <span>Emon Hossain Hira</span></p>
 		</div>
 	</footer>
+	@RenderSection("Scripts", required: false)
 </body>
 </html>

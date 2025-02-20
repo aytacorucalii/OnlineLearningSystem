@@ -26,5 +26,6 @@ public static class ConfigurationServices
         services.AddScoped<IStatisticsService, StatisticsService>();
 		services.AddScoped<IEmailService, EmailService>();
 		services.AddScoped<ILayoutService, LayoutService>();
+		services.AddScoped<IContactService , ContactService>();
 	}
 }

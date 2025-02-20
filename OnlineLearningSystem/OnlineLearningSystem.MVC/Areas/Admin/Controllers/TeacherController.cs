@@ -1,145 +1,145 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
 
-namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers
+namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
+[Area("Admin")]
+[Authorize(Roles = "Admin")]
+public class TeacherController : Controller
 {
-    [Area("Admin")]
-    public class TeacherController : Controller
+    private readonly ITeacherService _service;
+    private readonly ICourseService _courseService;
+
+    public TeacherController(ITeacherService service, ICourseService courseService)
     {
-        private readonly ITeacherService _service;
-        private readonly ICourseService _courseService;
+        _service = service;
+        _courseService = courseService;
+    }
 
-        public TeacherController(ITeacherService service, ICourseService courseService)
+    public async Task<IActionResult> Index()
+    {
+        IEnumerable<TeacherListItemDTO> list = await _service.GetTeacherListItemsAsync();
+        return View(list);
+    }
+
+    public async Task<IActionResult> Create()
+    {
+        return View();
+      
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(TeacherCreateDTO dto)
+    {
+        if (!ModelState.IsValid)
         {
-            _service = service;
-            _courseService = courseService;
+            return View(dto);
         }
 
-        public async Task<IActionResult> Index()
+        try
         {
-            IEnumerable<TeacherListItemDTO> list = await _service.GetTeacherListItemsAsync();
-            return View(list);
+            await _service.CreateAsync(dto);
+            await _service.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        catch (BaseException ex)
+        {
+            ModelState.AddModelError("CustomError", ex.Message);
+            return View(dto);
+        }
+        catch (Exception)
+        {
+            ModelState.AddModelError("CustomError", "Something went wrong!");
+            return View(dto);
+        }
+    }
+
+    public async Task<IActionResult> Update(int id)
+    {
+        try
+        {
+
+            return View(await _service.GetByIdForUpdateAsync(id));
+        }
+        catch (NotFoundException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (BaseException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception)
+        {
+            return BadRequest("Something went wrong!");
+        }
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Update(TeacherUpdateDTO dto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(dto);
         }
 
-        public async Task<IActionResult> Create()
+        try
         {
-            return View();
-          
+            await _service.UpdateAsync(dto);
+            await _service.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TeacherCreateDTO dto)
+        catch (BaseException ex)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(dto);
-            }
-
-            try
-            {
-                await _service.CreateAsync(dto);
-                await _service.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            catch (BaseException ex)
-            {
-                ModelState.AddModelError("CustomError", ex.Message);
-                return View(dto);
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("CustomError", "Something went wrong!");
-                return View(dto);
-            }
+            ModelState.AddModelError("CustomError", ex.Message);
+            return View(dto);
         }
-
-        public async Task<IActionResult> Update(int id)
+        catch (Exception)
         {
-            try
-            {
-
-                return View(await _service.GetByIdForUpdateAsync(id));
-            }
-            catch (NotFoundException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (BaseException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong!");
-            }
+            ModelState.AddModelError("CustomError", "Something went wrong!");
+            return View(dto);
         }
+    }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(TeacherUpdateDTO dto)
+    public async Task<IActionResult> Delete(int id)
+    {
+        try
         {
-            if (!ModelState.IsValid)
-            {
-                return View(dto);
-            }
-
-            try
-            {
-                await _service.UpdateAsync(dto);
-                await _service.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            catch (BaseException ex)
-            {
-                ModelState.AddModelError("CustomError", ex.Message);
-                return View(dto);
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("CustomError", "Something went wrong!");
-                return View(dto);
-            }
+            await _service.DeleteAsync(id);
+            await _service.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> Delete(int id)
+        catch (NotFoundException ex)
         {
-            try
-            {
-                await _service.DeleteAsync(id);
-                await _service.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            catch (NotFoundException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (BaseException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong!");
-            }
+            return BadRequest(ex.Message);
         }
-
-        public async Task<IActionResult> Details(int id)
+        catch (BaseException ex)
         {
-            try
-            {
-                return View(await _service.GetByIdWithChildrenAsync(id));
-            }
-            catch (NotFoundException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong!");
-            }
+            return BadRequest(ex.Message);
+        }
+        catch (Exception)
+        {
+            return BadRequest("Something went wrong!");
+        }
+    }
+
+    public async Task<IActionResult> Details(int id)
+    {
+        try
+        {
+            return View(await _service.GetByIdWithChildrenAsync(id));
+        }
+        catch (NotFoundException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception)
+        {
+            return BadRequest("Something went wrong!");
         }
     }
 }

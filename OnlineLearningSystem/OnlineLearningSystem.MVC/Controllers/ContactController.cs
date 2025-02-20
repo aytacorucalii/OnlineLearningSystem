@@ -1,26 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineLearning.BL.DTOs;
+using OnlineLearning.BL.Services.Abstractions;
 using OnlineLearning.Core.Models;
 
 namespace OnlineLearningSystem.MVC.Controllers;
 
 public class ContactController : Controller
 {
-	[HttpGet]
+	readonly IContactService _service;
+
+    public ContactController(IContactService service)
+    {
+        _service = service;
+    }
+
+    [HttpGet]
 	public IActionResult Index()
 	{
 		return View();
 	}
 
-	[HttpPost]
-	public IActionResult Submit(ContactFormModel model)
-	{
-		if (ModelState.IsValid)
-		{
-			// Burada məlumatları database-ə yazmaq və ya email göndərmək olar
-			ViewBag.Message = "Mesajınız uğurla göndərildi!";
-			return View("Index", model);
-		}
+    [HttpPost]
+    public IActionResult SendMessage(ContactDTO model)
+    {
+        try
+        {
+            _service.SendMessage(model);
+            TempData["SuccessMessage"] = "Mesaj uğurla göndərildi!";
+            return RedirectToAction("Index");
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = "Xəta baş verdi: " + ex.Message;
+            return RedirectToAction("Index");
+        }
 
-		return View("Index");
-	}
+    }
 }

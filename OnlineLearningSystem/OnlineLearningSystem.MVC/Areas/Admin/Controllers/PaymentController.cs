@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OnlineLearning.BL.Services.Abstractions;
-using AutoMapper;
-using OnlineLearning.Core.Models;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.BL.DTOs;
-using OnlineLearning.Core.Enums;
+using OnlineLearning.BL.Services.Abstractions;
+using OnlineLearning.Core.Models;
 
 namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class PaymentController : Controller
 {
 	private readonly IPaymentService _paymentService;

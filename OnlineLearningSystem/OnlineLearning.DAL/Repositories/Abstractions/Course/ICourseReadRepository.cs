@@ -5,4 +5,5 @@ namespace OnlineLearning.DAL.Repositories.Abstractions;
 
 public interface ICourseReadRepository: IReadRepository<Course>
 {
+    IQueryable<Course> GetCourses();
 }

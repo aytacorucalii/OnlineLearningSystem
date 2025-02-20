@@ -1,89 +1,65 @@
-﻿	<!-- counting section start -->
-<section class="count" id="count">
-	<div class="container">
-		<h2 class="title">LPI - System In Number</h2>
-		<div class="count-box">
-			<div class="item">
-				<i class="fa-regular fa-user"></i>
-				<div>258</div>
-				<p>Students</p>
+﻿@if (Model.Statistics != null)
+{
+	<!-- counting section start -->
+	@foreach (var item in Model.Statistics)
+	{
+		<section class="count" id="count">
+			<div class="container">
+				<h2 class="title">LPI - System In Number</h2>
+				<div class="count-box">
+					<div class="item">
+						<i class="fa-regular fa-user"></i>
+						<div>@item.StudentCount</div>
+						<p>Students</p>
+					</div>
+					<div class="item">
+						<i class="fa-regular fa-folder-closed"></i>
+						<div>@item.CourseCount</div>
+						<p>Courses</p>
+					</div>
+					<div class="item">
+						<i class="fa-solid fa-briefcase"></i>
+						<div>12</div>
+						<p>Language Trainings</p>
+					</div>
+					<div class="item">
+						<i class="fa-solid fa-graduation-cap"></i>
+						<div>@item.TeacherCount</div>
+						<p>Teachers</p>
+					</div>
+					<div class="item">
+						<i class="fa-solid fa-school"></i>
+						<div>8</div>
+						<p>Branches</p>
+					</div>
+				</div>
 			</div>
-			<div class="item">
-				<i class="fa-regular fa-folder-closed"></i>
-				<div>35</div>
-				<p>Learning Program</p>
-			</div>
-			<div class="item">
-				<i class="fa-solid fa-briefcase"></i>
-				<div>12</div>
-				<p>Language Trainings</p>
-			</div>
-			<div class="item">
-				<i class="fa-solid fa-graduation-cap"></i>
-				<div>20</div>
-				<p>Teachers</p>
-			</div>
-			<div class="item">
-				<i class="fa-solid fa-school"></i>
-				<div>8</div>
-				<p>Branches</p>
-			</div>
-		</div>
-	</div>
-</section>
+		</section>
+	}
+}
 
-<section class="faculty" id="faculty">
-	<div class="container">
-		<h2 class="title">Faculty Members</h2>
-		<div class="row">
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/man-1.png" alt="..." class="profile-card">
-					<div class="card-body">
-						<h3>Emon Hossain Hira</h3>
-						<p>Computer Science and Technology</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/man-2.jpg" alt="..." class="profile-card">
-					<div class="card-body">
-						<h3>MD.Nahid Ahmed</h3>
-						<p>Civil Technology</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/man-3.jpg" alt="..." class="profile-card">
-					<div class="card-body">
-						<h3>Sadman Islam</h3>
-						<p>Architecture Technology</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/man-4.jpg" alt="..." class="profile-card">
-					<div class="card-body">
-						<h3>Israt Jahan Samia</h3>
-						<p>Electrical Technology</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/man-5.jpg" alt="..." class="profile-card">
-					<div class="card-body">
-						<h3>Sohag Hosen</h3>
-						<p>Electronics Technology</p>
-					</div>
+@if (Model.Teachers.Count > 0)
+{
+	<section class="faculty" id="faculty">
+		<div class="container">
+			<h2 class="title">Teachers</h2>
+			<div class="row">
+				<div class="col-3">
+					@foreach (TeacherViewItemDTO teacher in Model.Teachers)
+					{
+						<div class="card">
+							<img src="~/assets/img/@teacher.ImgUrl" alt="..." class="profile-card">
+							<div class="card-body">
+								<h3>@teacher.Name</h3>
+								<p>@teacher.Subject</p>
+							</div>
+						</div>
+					}
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+}
 
 <section class="conteact" id="contact">
 	<h2 class="title">Contact <span>With</span> US</h2>

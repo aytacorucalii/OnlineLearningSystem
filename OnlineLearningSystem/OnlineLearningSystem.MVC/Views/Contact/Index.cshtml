@@ -1,43 +1,73 @@
-﻿@model ContactFormModel
+﻿@model ContactDTO
 
-<section class="conteact" id="contact">
-	<h2 class="title">Contact <span>With</span> US</h2>
-	<div class="wrap" style="margin-bottom: 20px;">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14697.42780352853!2d90.83236210280873!3d22.937077667737444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3754c115ae74abdb%3A0x741b1021ac347066!2sLakshmipur%20Polytechnic%20Institute!5e0!3m2!1sen!2sbd!4v1734191761196!5m2!1sen!2sbd" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-8">
-				<form asp-controller="Contact" asp-action="Submit" method="post">
-					<input type="text" asp-for="FullName" placeholder="Ad Soyad.." required />
-					<input type="email" asp-for="Email" placeholder="example@gmail.com" required />
-					<input type="text" asp-for="Phone" placeholder="+994.." required />
-					<input type="text" asp-for="Subject" placeholder="Text for .." required />
-					<textarea asp-for="Message" placeholder="Message.." required></textarea>
-					<button type="submit">Send Message</button>
-				</form>
-			</div>
-			<div class="col-4">
-				<div class="before">
-					<h5>Before Contacting Us</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Non equidem invideo, miror magis posuere velit aliquet. Lorem ipsum dolor sit amet consectetur, adipisicing, elit. Reprehenderit aspernatur minus labore minima esse dolorum excepturi repudiandae quidem eum ullam?</p>
-				</div>
-				<div class="info">
-					<h5>Contact Information</h5>
-					<p>
-						<i class="fa-regular fa-paper-plane"></i>
-						<small class="address">Baismara, Lakshmipur-3700</small>
-					</p>
-					<p>
-						<i class="fa-solid fa-mobile-screen-button"></i>
-						<small>+88018 1751 6654</small>
-					</p>
-					<p>
-						<i class="fa-regular fa-envelope"></i>
-						<small>emonhossainhira231@gmail.com</small>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="contact" id="contact">
+    <h2 class="title text-center mb-4">Bizimlə <span>Əlaqə</span> Qur</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="p-4 border rounded shadow bg-light">
+                    <form id="contactForm">
+                        <div class="input-group mb-3">
+                            <input type="text" id="FullName" asp-for="FullName" class="form-control" placeholder="Ad Soyad.." required />
+                            <input type="number" id="Phone" asp-for="Phone" class="form-control" placeholder="+994.." required />
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="email" id="Email" asp-for="Email" class="form-control" placeholder="example@gmail.com" required />
+                            <input type="text" id="Subject" asp-for="Subject" class="form-control" placeholder="Text for .." required />
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea id="Message" asp-for="Message" class="form-control" rows="4" placeholder="Message.." required></textarea>
+                        </div>
+
+                        <input type="submit" value="Send Message" class="btn btn-primary w-100">
+                        <p id="responseMessage" class="mt-3 text-center"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#contactForm").submit(function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    FullName: $("#FullName").val(),
+                    Email: $("#Email").val(),
+                    Phone: $("#Phone").val(),
+                    Subject: $("#Subject").val(),
+                    Message: $("#Message").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Contact/SendMessage",
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        $("#responseMessage").text(response.message).css("color", "green");
+                        $("#contactForm")[0].reset();
+                    },
+                    error: function (xhr) {
+                        $("#responseMessage").text(xhr.responseJSON.error).css("color", "red");
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,6 +1,4 @@
-﻿using ListRace.DL.Repository.Abstractions;
-using ListRace.DL.Repository.Implementations;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using OnlineLearning.DAL.Repositories.Abstractions;
 using OnlineLearning.DAL.Repositories.Implementations;
 
@@ -18,5 +16,7 @@ public static class ConfigurationService
 		services.AddScoped<IStudentWriteRepository, StudentWriteRepository>();
         services.AddScoped<IStatisticsReadRepository, StatisticsReadRepository>();
         services.AddScoped<IStatisticsWriteRepository, StatisticsWriteRepository>();
+		services.AddScoped<IContactReadRepository, ContactReadRepository>();
+		services.AddScoped<IContactWriteRepository, ContactWriteRepository>();
     }
 }

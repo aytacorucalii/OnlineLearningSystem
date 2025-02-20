@@ -1,6 +1,8 @@
-﻿namespace OnlineLearning.Core.Models;
+﻿using OnlineLearning.Core.Models.Base;
 
-public class ContactFormModel
+namespace OnlineLearning.Core.Models;
+
+public class Contact: BaseEntity
 {
 	public string FullName { get; set; }
 	public string Email { get; set; }

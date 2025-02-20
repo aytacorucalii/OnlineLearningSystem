@@ -1,177 +1,125 @@
-﻿	<!-- -- Course Page Start -- -->
+﻿<!-- -- Course Page Start -- -->
+@if (Model.Courses.Count > 0)
+{
+	<section class="course" id="course">
+		<div class="container">
+			<div class="title">
+				<p>Choose <span>Your</span> Course</p>
+			</div>
+			@foreach (CourseViewItemDTO course in Model.Courses)
+			{
+				<div class="row">
+					<div class="col-3">
+						<div class="card">
+							<img src="~/assets/img/@course.ImgUrl" alt="...">
+							<div class="card-body">
+								<h4>@course.CourseName</h4>
+								<div class="wrap">
+									<div class="start">
+										<i class="fa-regular fa-star"></i>
+										<i class="fa-regular fa-star"></i>
+										<i class="fa-regular fa-star"></i>
+									</div>
+									<form asp-area="Admin" asp-controller="Payment" asp-action="StartPayment" method="post">
+										<button type="submit">@course.Price</button>
+									</form>
 
-<section class="course" id="course">
-	<div class="container">
-		<div class="title">
-			<p>Choose <span>Your</span> Course</p>
+								</div>
+							</div>
+							<div class="card-footer">
+								<small style="color: #FE5D59;">Bangla</small>
+								<small style="color: #999;">8 Weeks</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+			<div class="row">
+				<div class="col-3">
+					<div class="card">
+						<img src="~/assets/img/soft.jpg" alt="...">
+						<div class="card-body">
+							<h4>Software Development (A-Z)</h4>
+							<div class="wrap">
+								<div class="start">
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+								</div>
+								<button class="paid">180$</button>
+							</div>
+						</div>
+						<div class="card-footer">
+							<small style="color: #FE5D59;">Bangla</small>
+							<small style="color: #999;">12 Weeks</small>
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<img src="~/assets/img/mobile.jpg" alt="...">
+						<div class="card-body">
+							<h4>Mobile Apps Development</h4>
+							<div class="wrap">
+								<div class="start">
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+								</div>
+								<button class="paid">80$</button>
+							</div>
+						</div>
+						<div class="card-footer">
+							<small style="color: #FE5D59;">Bangla</small>
+							<small style="color: #999;">9 Weeks</small>
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<img src="~/assets/img/graphic.jpg" alt="...">
+						<div class="card-body">
+							<h4>Graphics Design & Freelancing</h4>
+							<div class="wrap">
+								<div class="start">
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+								</div>
+								<button class="paid">200$</button>
+							</div>
+						</div>
+						<div class="card-footer">
+							<small style="color: #FE5D59;">Bangla</small>
+							<small style="color: #999;">5 Weeks</small>
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<img src="~/assets/img/data.jpg" alt="...">
+						<div class="card-body">
+							<h4>Data Science</h4>
+							<div class="wrap">
+								<div class="start">
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+									<i class="fa-regular fa-star"></i>
+								</div>
+								<button class="paid">400$</button>
+							</div>
+						</div>
+						<div class="card-footer">
+							<small style="color: #FE5D59;">English</small>
+							<small style="color: #999;">10 Weeks</small>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</section>
+}
 
-		<div class="row">
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/web-design.png" alt="...">
-					<div class="card-body">
-						<h4>Web Design and Freelancing</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button>Free</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">8 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/backend.png" alt="...">
-					<div class="card-body">
-						<h4>Back-end Development</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">130$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">12 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/ui.jpg" alt="...">
-					<div class="card-body">
-						<h4>UI & UX Design</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">100$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">7 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/software.jpg" alt="...">
-					<div class="card-body">
-						<h4>Basic Software Development</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button>Free</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">English</small>
-						<small style="color: #999;">5 Weeks</small>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/soft.jpg" alt="...">
-					<div class="card-body">
-						<h4>Software Development (A-Z)</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">180$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">12 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/mobile.jpg" alt="...">
-					<div class="card-body">
-						<h4>Mobile Apps Development</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">80$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">9 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/graphic.jpg" alt="...">
-					<div class="card-body">
-						<h4>Graphics Design & Freelancing</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">200$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">Bangla</small>
-						<small style="color: #999;">5 Weeks</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<img src="assets/img/data.jpg" alt="...">
-					<div class="card-body">
-						<h4>Data Science</h4>
-						<div class="wrap">
-							<div class="start">
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<button class="paid">400$</button>
-						</div>
-					</div>
-					<div class="card-footer">
-						<small style="color: #FE5D59;">English</small>
-						<small style="color: #999;">10 Weeks</small>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 <!-- find course section start  -->
 

@@ -11,11 +11,13 @@ public class Statistics : BaseEntity
 	public int BranchCount { get; set; }
 }
 
-//search etme
-//sual verme
-//statistica deyismesi hazirdir
-//email gonderir
-//payment  var 
-//login olsun sonra payment
-// payment istese evvel login sonra payment
-//admin panel var tam deyil
+//search etmenin viewsu yoxdur
+//payment var islemir yeqin ki
+//payment istese evvel login sonra payment
+//create update ishlemir 
+//dizayn duzelt
+//settings footer 
+//email isleyir
+//statistica deyismesi hazirdir check olunmalidir
+//message check+ view
+//Amin Allah razi olsun eger baxsan :( 

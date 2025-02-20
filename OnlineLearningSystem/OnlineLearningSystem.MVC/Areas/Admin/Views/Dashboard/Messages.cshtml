@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ContactDTO>
+
+<h2>Gələn Mesajlar</h2>
+<table>
+    <tr>
+        <th>Ad Soyad  </th>
+        <th> Email </th>
+        <th> Telefon </th>
+        <th> Mövzu </th>
+        <th> Mesaj </th>
+    </tr>
+    @foreach (var msg in Model)
+    {
+        <tr>
+            <td>@msg.FullName</td>
+            <td>@msg.Email</td>
+            <td>@msg.Phone</td>
+            <td>@msg.Subject</td>
+            <td>@msg.Message</td>
+        </tr>
+    }
+</table>

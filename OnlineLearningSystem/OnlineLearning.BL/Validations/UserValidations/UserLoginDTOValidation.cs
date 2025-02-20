@@ -14,5 +14,6 @@ public class UserLoginDTOValidation : AbstractValidator<UserLoginDTO>
         RuleFor(e => e.Password)
             .NotEmpty().WithMessage("Password cannot be empty!")
             .MinimumLength(4).WithMessage("Password must be at least 4 symbols long!");
+
     }
 }
