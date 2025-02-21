@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>LPI - System</title>
+	<title>Learning Online System</title>
 	<link rel="icon" href="~/assets/img/logo.png">
 
 	<!-- Icon CDN -->
@@ -35,6 +35,7 @@
 						<li><a asp-controller="Teacher" asp-action="Index">Teachers</a></li>
 						<li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
 						<li><a asp-controller="Course" asp-action="SearchCourses"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+					
 						@if (!User.Identity.IsAuthenticated)
 						{
 							<li class="header-top-contact">
@@ -74,12 +75,12 @@
 				<button class="join-btn">Join</button>
 			</div>
 			<div class="social-icons">
-				<a href="#"><img src="~/assets/img/icon/facebook.png" alt="Facebook"></a>
+				<a href='@settings["facebook"]?? ""'><img src="~/assets/img/icon/facebook.png" alt="Facebook"></a>
 				<a href="#"><img src="~/assets/img/icon/google.png" alt="Google"></a>
-				<a href="#"><img src="~/assets/img/icon/instagram.png" alt="Instagram"></a>
-				<a href="#"><img src="~/assets/img/icon/linkedin.png" alt="LinkedIn"></a>
-				<a href="#"><img src="~/assets/img/icon/twitter.png" alt="Twitter"></a>
-				<a href="#"><img src="~/assets/img/icon/youtube.png" alt="YouTube"></a>
+				<a href='@settings["instagram"]?? ""'><img src="~/assets/img/icon/instagram.png" alt="Instagram"></a>
+				<a href='@settings["linkedin"]?? ""'><img src="~/assets/img/icon/linkedin.png" alt="LinkedIn"></a>
+				<a href='@settings["twitter"]?? ""'><img src="~/assets/img/icon/twitter.png" alt="Twitter"></a>
+				<a href='@settings["youtube"]?? ""'><img src="~/assets/img/icon/youtube.png" alt="YouTube"></a>
 			</div>
 			<p class="copyright">Discovere 2024 © All Right reserved</p>
 			<p class="design-credit">Designed by <span>Emon Hossain Hira</span></p>

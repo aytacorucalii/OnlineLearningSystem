@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.BL.Services.Abstractions;
-using OnlineLearningSystem.MVC.ViewModels;
 
 namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
 [Area("Admin")]

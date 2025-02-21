@@ -52,11 +52,10 @@
 
                 <div class="mb-3">
                     <select class="custom-select" asp-items="courses" asp-for="Courses">
-                        <option value="">Select Course</option>
+                        <option selected>Select Course</option>
                     </select>
                     <span class="text-danger" asp-validation-for="Courses"></span>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Create Student</button>
                 <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Back</a>
             </form>

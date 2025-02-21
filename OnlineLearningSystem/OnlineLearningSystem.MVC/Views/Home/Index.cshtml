@@ -12,7 +12,7 @@
 <section class="home" id="home">
 	<div class="container">
 		<div class="warp">		
-			<h4>Bu kurs, <br>bugünün tələbələrini sabahın <br> liderlərinə çevirməyə yönəlib.</h4>
+			<h4>Teaching Turning, <br>Today’s Learners Into<br> Tomorrow’s Leaders.</h4>
 			<a href="" class="btn btn-primary">Signup Now</a>
 			<a href="" class="btn btn-secondary">Learn More</a>
 		</div>
@@ -71,7 +71,7 @@
 										<i class="fa-regular fa-star"></i>
 										<i class="fa-regular fa-star"></i>
 									</div>
-									<form asp-area="Admin" asp-controller="Payment" asp-action="StartPayment" method="post">
+									<form asp-area="Admin" asp-controller="Payment" asp-action="CreatePaymentSession" method="post">
 										<button type="submit">@course.Price</button>
 									</form>
 
@@ -85,89 +85,6 @@
 					</div>	
 				</div>
 			}
-			<div class="row">
-				<div class="col-3">
-					<div class="card">
-						<img src="~/assets/img/soft.jpg" alt="...">
-						<div class="card-body">
-							<h4>Software Development (A-Z)</h4>
-							<div class="wrap">
-								<div class="start">
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-								</div>
-								<button class="paid">180$</button>
-							</div>
-						</div>
-						<div class="card-footer">
-							<small style="color: #FE5D59;">Bangla</small>
-							<small style="color: #999;">12 Weeks</small>
-						</div>
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="card">
-						<img src="~/assets/img/mobile.jpg" alt="...">
-						<div class="card-body">
-							<h4>Mobile Apps Development</h4>
-							<div class="wrap">
-								<div class="start">
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-								</div>
-								<button class="paid">80$</button>
-							</div>
-						</div>
-						<div class="card-footer">
-							<small style="color: #FE5D59;">Bangla</small>
-							<small style="color: #999;">9 Weeks</small>
-						</div>
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="card">
-						<img src="~/assets/img/graphic.jpg" alt="...">
-						<div class="card-body">
-							<h4>Graphics Design & Freelancing</h4>
-							<div class="wrap">
-								<div class="start">
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-								</div>
-								<button class="paid">200$</button>
-							</div>
-						</div>
-						<div class="card-footer">
-							<small style="color: #FE5D59;">Bangla</small>
-							<small style="color: #999;">5 Weeks</small>
-						</div>
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="card">
-						<img src="~/assets/img/data.jpg" alt="...">
-						<div class="card-body">
-							<h4>Data Science</h4>
-							<div class="wrap">
-								<div class="start">
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-									<i class="fa-regular fa-star"></i>
-								</div>
-								<button class="paid">400$</button>
-							</div>
-						</div>
-						<div class="card-footer">
-							<small style="color: #FE5D59;">English</small>
-							<small style="color: #999;">10 Weeks</small>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</section>
 }
 
@@ -287,15 +204,16 @@
 <section class="conteact" id="contact">
 	<h2 class="title">Contact <span>With</span> US</h2>
 	<div class="wrap" style="margin-bottom: 20px;">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14697.42780352853!2d90.83236210280873!3d22.937077667737444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3754c115ae74abdb%3A0x741b1021ac347066!2sLakshmipur%20Polytechnic%20Institute!5e0!3m2!1sen!2sbd!4v1734191761196!5m2!1sen!2sbd" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97726.31073809757!2d49.8554611!3d40.4092776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403071404905ed4f%3A0x616a8fae5fd4e0be!2sCodeAcademy%20Baku!5e0!3m2!1sen!2saz!4v1718289935991!5m2!1sen!2saz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-8">
 				<form>
 					<div class="input-group">
 						<input type="text" placeholder="Ad Soyad..">
-						<input type="number" placeholder="+994..">
+						<input type="number" placeholder="+994(XX)XXX-XX-XX">
 					</div>
 					<div class="input-group">
 						<input type="email" placeholder="example@gmail.com">
@@ -307,11 +225,11 @@
 			</div>
 			<div class="col-4">
 				<div class="before">
-					<h5>Bizimlə əlaqə</h5>
-					<p>Kurs, təcrübəli mütəxəssislər tərəfindən hazırlanan, təcrübə ilə zəngin, asan başa düşülən və tətbiqə yönəlmiş dərslərlə təqdim edilir. Hər bir mövzu praktiki təcrübələrlə dəstəklənir ki, iştirakçılar real dünya layihələrində tətbiq edə bilsinlər.</p>
+					<h5>Before Contacting Us</h5>
+					<p>The course is delivered with lessons prepared by experienced experts, enriched with practical knowledge, easy to understand, and application-oriented. Each topic is supported by practical exercises so that participants can apply them in real-world projects.</p>
 				</div>
 				<div class="info">
-					<h5>Əlaqə Məlumatları</h5>
+					<h5>Contact Information</h5>
 					<p>
 						<i class="fa-regular fa-paper-plane"></i>
 						<small class="address">Azərbaycan,Bakı</small>
@@ -328,4 +246,4 @@
 			</div>
 		</div>
 	</div>
-</section><a href="c:\users\hp\source\repos\onlinelearningsystem\onlinelearningsystem.mvc\views\home\index.cshtml">c:\users\hp\source\repos\onlinelearningsystem\onlinelearningsystem.mvc\views\home\index.cshtml</a>
+</section>

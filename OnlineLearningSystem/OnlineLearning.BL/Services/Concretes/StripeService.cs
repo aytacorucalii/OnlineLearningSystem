@@ -5,7 +5,7 @@ using OnlineLearning.BL.Services.Abstractions;
 
 public class StripeService: IStripeService
 {
-    private readonly string _secretKey = "your-stripe-secret-key";
+    private readonly string _secretKey = "sk_test_51QurjPAcZDj7u3fW5CkwMtboWigeouKdi5jt9AJPHQHkEY6RqmBRCsWcBpQq7oyuAo8qsWN0Js1vfqhV5AbicwC700szKj9Qk1";
 
     public StripeService()
     {

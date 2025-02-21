@@ -65,6 +65,10 @@ public class CourseService : ICourseService
         File.Delete(Path.Combine(Path.GetFullPath("wwwroot"), "uploads", "course", course.ImgUrl));
         _writeRepo.Delete(course);
     }
+ 
+    public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();
+
+
     public List<Course> SearchCourses(string searchTerm)
     {
         if (string.IsNullOrWhiteSpace(searchTerm))
@@ -78,5 +82,4 @@ public class CourseService : ICourseService
             .Take(10)
             .ToList();
     }
-    public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();
 }

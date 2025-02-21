@@ -9,6 +9,7 @@ public class HomeController : Controller
     readonly ITeacherService _teacherService;
 	readonly ICourseService _courseService;
     readonly IStatisticsService _statisticsService;
+   // readonly ILayoutService _layoutService;
 
 	public HomeController(ICourseService courseService, ITeacherService teacherService, IStatisticsService statisticsService)
 	{

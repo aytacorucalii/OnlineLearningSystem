@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
 
@@ -10,12 +9,10 @@ namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
 public class CourseController : Controller
 {
     readonly ICourseService _service;
-    readonly ITeacherService _teacherService;
 
-    public CourseController(ICourseService service, ITeacherService teacherService)
+    public CourseController(ICourseService service)
     {
         _service = service;
-        _teacherService = teacherService;
     }
 
     public async Task<IActionResult> Index()
@@ -28,8 +25,7 @@ public class CourseController : Controller
     public async Task<IActionResult> Create()
     {
         try
-        {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
+        { 
             return View();
         }
         catch (Exception)
@@ -44,7 +40,6 @@ public class CourseController : Controller
     {
         if (!ModelState.IsValid)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             return View(dto);
         }
 
@@ -56,13 +51,11 @@ public class CourseController : Controller
         }
         catch (BaseException ex)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             ModelState.AddModelError("CustomError", ex.Message);
             return View(dto);
         }
         catch (Exception)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             ModelState.AddModelError("CustomError", "Something went wrong!");
             return View(dto);
         }
@@ -73,7 +66,6 @@ public class CourseController : Controller
         try
         {
 
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             return View(await _service.GetByIdForUpdateAsync(id));
         }
         catch (BaseException ex)
@@ -92,7 +84,6 @@ public class CourseController : Controller
     {
         if (!ModelState.IsValid)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             return View(dto);
         }
 
@@ -104,13 +95,11 @@ public class CourseController : Controller
         }
         catch (BaseException ex)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             ModelState.AddModelError("CustomError", ex.Message);
             return View(dto);
         }
         catch (Exception)
         {
-            ViewData["Teachers"] = new SelectList(await _teacherService.GetTeacherListItemsAsync(), "Id", "Name");
             ModelState.AddModelError("CustomError", "Something went wrong!");
             return View(dto);
         }

@@ -46,6 +46,17 @@ public class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string
 			new IdentityUserRole<string> { UserId = admin.Id, RoleId = "36f92c7f-a6e4-48b1-96e9-f3b284c6a5b7" }
 		);
 		#endregion
+
+		#region Settings
+		modelBuilder.Entity<Settings>().HasData(
+			new Settings { Id = 1, Key = "facebook", Value = "https://www.facebook.com/login" },
+			new Settings { Id = 2, Key = "instagram", Value = "https://www.instagram.com/accounts/login/" },
+			new Settings { Id = 3, Key = "linkedin", Value = "https://www.linkedin.com/login" },
+			new Settings { Id = 4, Key = "twitter", Value = "https://twitter.com/login" },
+			new Settings { Id = 5, Key = "youtube", Value = "https://accounts.google.com/ServiceLogin?service=youtube" }
+		);
+		#endregion
+
 		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using OnlineLearning.BL.DTOs;
 
-namespace OnlineLearning.BL.Validations;
+namespace OnlineLearning.BL.Validations.ContactValidations;
 
 public class ContactDTOValidator : AbstractValidator<ContactDTO>
 {

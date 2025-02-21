@@ -11,13 +11,15 @@ public class Statistics : BaseEntity
 	public int BranchCount { get; set; }
 }
 
-//search etmenin viewsu yoxdur
-//payment var islemir yeqin ki
+//search etmenin viewsu yoxdur (coureservice) chatgpt basa dusmur
+//payment var isleyir yeqin ki secretkey var onun da viewsu yoxdu
 //payment istese evvel login sonra payment
-//create update ishlemir 
-//dizayn duzelt
-//settings footer 
+//create update ishlemir add olunmur duymeye basanda 
+//dizayn duzelmelidir + course select pisdir
+//message duzgun islemir
+
+//settings footer isleyir 
 //email isleyir
+//login register isleyir cox sukur
 //statistica deyismesi hazirdir check olunmalidir
-//message check+ view
 //Amin Allah razi olsun eger baxsan :( 

@@ -1,22 +1,59 @@
 ﻿@model IEnumerable<ContactDTO>
 
-<h2>Gələn Mesajlar</h2>
-<table>
-    <tr>
-        <th>Ad Soyad  </th>
-        <th> Email </th>
-        <th> Telefon </th>
-        <th> Mövzu </th>
-        <th> Mesaj </th>
-    </tr>
-    @foreach (var msg in Model)
-    {
-        <tr>
-            <td>@msg.FullName</td>
-            <td>@msg.Email</td>
-            <td>@msg.Phone</td>
-            <td>@msg.Subject</td>
-            <td>@msg.Message</td>
-        </tr>
-    }
-</table>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Gələn Mesajlar</h6>
+        </div>
+        <div class="card-body">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0" id="messagesTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Ad Soyad</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>Mövzu</th>
+                                <th>Mesaj</th>
+                                <th>Əməliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var (msg, index) in Model.Select((m, i) => (m, i + 1)))
+                            {
+                                <tr>
+                                    <td>@index</td>
+                                    <td>@msg.FullName</td>
+                                    <td>@msg.Email</td>
+                                    <td>@msg.Phone</td>
+                                    <td>@msg.Subject</td>
+                                    <td>@msg.Message</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" asp-controller="Dashboard" asp-action="DeleteMessage" asp-route-id="@msg.Id">Sil</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-muted text-center">Sistemdə heç bir mesaj tapılmadı.</p>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="~/admin/vendor/datatables/jquery.dataTables.min.js" defer></script>
+<script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js" defer></script>
+<script src="~/admin/js/demo/datatables-demo.js" defer></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $('#messagesTable').DataTable();  // DataTable aktivləşdirilir
+    });
+</script>
