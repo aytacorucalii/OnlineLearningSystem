@@ -71,23 +71,9 @@ public class CourseService : ICourseService
     public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();
 
 
-    public async Task<List<CourseListItemDTO>> SearchCoursesAsync(string searchTerm, int page = 1, int pageSize = 10)
+    public async Task<List<CourseListItemDTO>> SearchCoursesAsync(string searchTerm, int page = 1, int pageSize = 10, string sortBy = "CourseName")
     {
-        if (string.IsNullOrWhiteSpace(searchTerm))
-        {
-            return new List<CourseListItemDTO>();
-        }
-
-        var query = _readRepo.GetCourses()
-            .Where(c => c.CourseName.ToLower().Contains(searchTerm.ToLower()))
-            .OrderBy(c => c.CourseName);
-
-        var courses = await query
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
-
+        var courses = await _readRepo.SearchCoursesAsync(searchTerm, page, pageSize, sortBy);
         return _mapper.Map<List<CourseListItemDTO>>(courses);
     }
-
 }

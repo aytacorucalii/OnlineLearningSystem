@@ -2,7 +2,7 @@
 
 public enum Grade
 {
-    Freshman = 1,     // 1-ci kurs
-    Sophomore = 2,    // 2-ci kurs
-    Junior = 3        // 3-cü kurs
+    FirstYear = 1,     // Birinci il (Freshman)
+    SecondYear = 2,    // İkinci il (Sophomore)
+    ThirdYear = 3      // Üçüncü il (Junior)
 }

@@ -222,12 +222,12 @@
 
 						<h3 style="text-align: center; margin-bottom: 20px; color: #333;">Write a Message</h3>
 
-						<label style="font-weight: bold; color: #333;">Select Course:</label>
-						<select name="CourseId" class="form-control" required
-								style="width: 100%; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 15px;
+							<label style="font-weight: bold; color: #333;">Select Course:</label>
+					<select name="CourseId" asp-for="Courses" class="form-control" required
+							style="width: 100%; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 15px;
         background-color: #fff; color: #333; font-weight: bold; padding: 10px;">
-							<option value="">-- Select a Course --</option>
-						</select>
+						<option value="">-- Select a Course --</option>
+					</select>
 
 						<label style="font-weight: bold; color: #333;">Rating (1-5):</label>
 						<input type="number" name="Rating" min="1" max="5" required class="form-control"

@@ -18,8 +18,14 @@ public class ContactController : Controller
         _mapper = mapper;
         _courseService = courseService;
     }
+	public async Task<IActionResult> Index()
+	{
+		var course = await _courseService.GetCourseListItemsAsync();
+		ViewData["Course"] = new SelectList(course, "Id", "CourseName");
 
-    [HttpGet]
+		return View();
+	}
+	[HttpGet]
 	public async Task<IActionResult> Create()
 	{
 		var courses = await _courseService.GetCourseListItemsAsync();

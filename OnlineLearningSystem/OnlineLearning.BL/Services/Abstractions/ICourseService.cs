@@ -14,5 +14,6 @@ public interface ICourseService
     Task UpdateAsync(CourseUpdateDTO dto);
     Task DeleteAsync(int id);
     Task<int> SaveChangesAsync();
-    Task<List<CourseListItemDTO>> SearchCoursesAsync(string searchTerm, int page = 1, int pageSize = 10);
+    Task<List<CourseListItemDTO>> SearchCoursesAsync(string searchTerm, int page = 1, int pageSize = 10, string sortBy = "CourseName");
 }
+

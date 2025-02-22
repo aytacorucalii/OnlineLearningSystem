@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ltRHVJ8RA/EFRCNOumYmHKa453l31gteitUTxnGlsrQ=",
+  "Hash": "m1Ecf7zSt4MNML1Mif6ommknvwitwA3b++4SjvD3N7U=",
   "Source": "OnlineLearningSystem.MVC",
   "BasePath": "_content/OnlineLearningSystem.MVC",
   "Mode": "Default",
@@ -1005,25 +1005,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\web-design.png"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\091f8542-4ace-42f6-94b3-d9006c13d041download (4).jpg",
-      "SourceId": "OnlineLearningSystem.MVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
-      "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/091f8542-4ace-42f6-94b3-d9006c13d041download (4).jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\091f8542-4ace-42f6-94b3-d9006c13d041download (4).jpg"
-    },
-    {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
@@ -1100,12 +1081,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\course\\60260672-660a-4206-adf8-5d9b182bea67WIN_20240620_12_00_05_Pro.jpg"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\9394a936-dd35-4719-b951-610c0cebbe33download (10).jpg",
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\97f67644-5bc9-4cca-bed3-6bedb66314eedownload (2).jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
       "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/9394a936-dd35-4719-b951-610c0cebbe33download (10).jpg",
+      "RelativePath": "uploads/course/97f67644-5bc9-4cca-bed3-6bedb66314eedownload (2).jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1116,7 +1097,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\9394a936-dd35-4719-b951-610c0cebbe33download (10).jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\course\\97f67644-5bc9-4cca-bed3-6bedb66314eedownload (2).jpg"
     },
     {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg",
@@ -1138,12 +1119,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\course\\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\ca130214-e258-41cc-9cc2-8e8d2b1f2102download (6).jpg",
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\b6f90246-1cb5-4242-8d50-0ab1cf49541edownload (4).jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
       "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/ca130214-e258-41cc-9cc2-8e8d2b1f2102download (6).jpg",
+      "RelativePath": "uploads/course/b6f90246-1cb5-4242-8d50-0ab1cf49541edownload (4).jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1154,15 +1135,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\ca130214-e258-41cc-9cc2-8e8d2b1f2102download (6).jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\course\\b6f90246-1cb5-4242-8d50-0ab1cf49541edownload (4).jpg"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\ded83af8-7488-42c2-ba92-64241ff3654ddownload (3).jpg",
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\b73f6f47-6bad-4565-8fac-f0ea1fad78f9download (3).jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
       "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/ded83af8-7488-42c2-ba92-64241ff3654ddownload (3).jpg",
+      "RelativePath": "uploads/course/b73f6f47-6bad-4565-8fac-f0ea1fad78f9download (3).jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1173,15 +1154,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\ded83af8-7488-42c2-ba92-64241ff3654ddownload (3).jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\course\\b73f6f47-6bad-4565-8fac-f0ea1fad78f9download (3).jpg"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\e9343367-69f0-4352-9163-6ba44c1facf6download (5).jpg",
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\c4fd1ca8-78ab-463c-9e47-42764ec42abadownload (1).jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
       "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/e9343367-69f0-4352-9163-6ba44c1facf6download (5).jpg",
+      "RelativePath": "uploads/course/c4fd1ca8-78ab-463c-9e47-42764ec42abadownload (1).jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1192,7 +1173,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\e9343367-69f0-4352-9163-6ba44c1facf6download (5).jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\course\\c4fd1ca8-78ab-463c-9e47-42764ec42abadownload (1).jpg"
     },
     {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg",
@@ -1231,25 +1212,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\course\\f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg",
-      "SourceId": "OnlineLearningSystem.MVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
-      "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/course/fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\course\\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg"
     },
     {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\student\\09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg",
@@ -1347,12 +1309,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\student\\79607fcb-8881-4b5b-9b89-c49c356fad1cdownload (6).jpg"
     },
     {
-      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg",
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\113479c3-a739-4317-83ac-dfe359c288b6images (1).jpg",
       "SourceId": "OnlineLearningSystem.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
       "BasePath": "_content/OnlineLearningSystem.MVC",
-      "RelativePath": "uploads/teacher/3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg",
+      "RelativePath": "uploads/teacher/113479c3-a739-4317-83ac-dfe359c288b6images (1).jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1363,7 +1325,45 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\teacher\\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\teacher\\113479c3-a739-4317-83ac-dfe359c288b6images (1).jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\5c39842b-9567-49d8-be05-c35389958edfimages.jpg",
+      "SourceId": "OnlineLearningSystem.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
+      "BasePath": "_content/OnlineLearningSystem.MVC",
+      "RelativePath": "uploads/teacher/5c39842b-9567-49d8-be05-c35389958edfimages.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\teacher\\5c39842b-9567-49d8-be05-c35389958edfimages.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\72209636-1944-4cd4-8b71-2513806b1716images (2).jpg",
+      "SourceId": "OnlineLearningSystem.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
+      "BasePath": "_content/OnlineLearningSystem.MVC",
+      "RelativePath": "uploads/teacher/72209636-1944-4cd4-8b71-2513806b1716images (2).jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\teacher\\72209636-1944-4cd4-8b71-2513806b1716images (2).jpg"
     },
     {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg",
@@ -1383,6 +1383,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\teacher\\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\7b7daf3b-0624-4457-8148-ee9903189660images (3).jpg",
+      "SourceId": "OnlineLearningSystem.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\",
+      "BasePath": "_content/OnlineLearningSystem.MVC",
+      "RelativePath": "uploads/teacher/7b7daf3b-0624-4457-8148-ee9903189660images (3).jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\teacher\\7b7daf3b-0624-4457-8148-ee9903189660images (3).jpg"
     },
     {
       "Identity": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\8ce87cca-b2bb-4368-8e51-faffbc2b69abWIN_20240516_15_07_42_Pro.jpg",

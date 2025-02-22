@@ -44,18 +44,19 @@
 		<div class="container">
 			<h2 class="title">Teachers</h2>
 			<div class="row">
-				<div class="col-3">
-					@foreach (TeacherViewItemDTO teacher in Model.Teachers)
-					{
+				@foreach (TeacherViewItemDTO teacher in Model.Teachers)
+				{
+					<div class="col-3">
 						<div class="card">
+							<!-- Şəkili düzgün yerə yerləşdirmək üçün class əlavə edirik -->
 							<img src="~/uploads/teacher/@teacher.ImgUrl" alt="explore image" class="profile-card">
 							<div class="card-body">
 								<h3>@teacher.Name</h3>
 								<p>@teacher.Subject</p>
 							</div>
 						</div>
-					}
-				</div>
+					</div>
+				}
 			</div>
 		</div>
 	</section>
