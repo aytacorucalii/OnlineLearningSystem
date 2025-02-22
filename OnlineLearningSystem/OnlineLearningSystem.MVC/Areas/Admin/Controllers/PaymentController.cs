@@ -1,110 +1,88 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Services.Abstractions;
-using OnlineLearning.Core.Models;
 
-namespace OnlineLearningSystem.MVC.Areas.Admin.Controllers;
-
+namespace OnlineLearning.Admin.Controllers;
 [Area("Admin")]
 [Authorize(Roles = "Admin")]
 public class PaymentController : Controller
 {
-	private readonly IPaymentService _paymentService;
-	private readonly IMapper _mapper;
-	private readonly IStripeService _stripeService;
-	public PaymentController(IPaymentService paymentService, IMapper mapper, IStripeService stripeService)
-	{
-		_paymentService = paymentService;
-		_mapper = mapper;
-		_stripeService = stripeService;
-	}
+    private readonly IPaymentService _paymentService;
 
-	// Ödənişlərin siyahısını göstərmək
-	public async Task<IActionResult> Index()
-	{
-		try
-		{
-			var payments = await _paymentService.GetAllPaymentsAsync();
-			var paymentDtos = _mapper.Map<List<PaymentDTO>>(payments); // AutoMapper ilə DTO-ya çeviririk
-			return View(paymentDtos);
-		}
-		catch (Exception ex)
-		{
-			// Loglama əlavə edə bilərsiniz
-			TempData["Error"] = $"Ödənişlər alınarkən xəta baş verdi: {ex.Message}";
-			return View("Error");
-		}
-	}
+    public PaymentController(IPaymentService paymentService)
+    {
+        _paymentService = paymentService;
+    }
 
+    // Bütün ödənişləri göstərmək
+    public async Task<IActionResult> Index()
+    {
+        var payments = await _paymentService.GetAllPaymentsAsync();
+        return View(payments); // View-a bütün ödənişləri göndəririk
+    }
 
-	// Ödənişin detallarını göstərmək
-	public async Task<IActionResult> Details(int id)
-	{
-		try
-		{
-			var payment = await _paymentService.GetPaymentByIdAsync(id);
-			if (payment == null)
-			{
-				TempData["Error"] = "Ödəniş tapılmadı.";
-				return RedirectToAction(nameof(Index));
-			}
+    // Ödənişi göstərmək
+    public async Task<IActionResult> Details(int id)
+    {
+        var payment = await _paymentService.GetPaymentByIdAsync(id);
+        if (payment == null)
+        {
+            return NotFound(); // Əgər ödəniş tapılmadısa 404 səhifəsi qaytarırıq
+        }
 
-			var paymentDto = _mapper.Map<PaymentDTO>(payment);
-			return View(paymentDto);
-		}
-		catch (Exception ex)
-		{
-			TempData["Error"] = $"Ödənişin detalları alınarkən xəta baş verdi: {ex.Message}";
-			return RedirectToAction(nameof(Index));
-		}
-	}
+        return View(payment); // Ödənişi View-da göstəririk
+    }
 
-	// Ödənişin statusunu dəyişmək
-	[HttpPost]
-	public async Task<IActionResult> UpdateStatus(int id, bool status)
-	{
-		try
-		{
-			var payment = await _paymentService.GetPaymentByIdAsync(id);
-			if (payment == null)
-			{
-				TempData["Error"] = "Ödəniş tapılmadı.";
-				return RedirectToAction(nameof(Index));
-			}
+    // Yeni ödəniş yaratmaq
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-			// Parametreyi doğru şekilde geçiriyoruz
-			await _paymentService.UpdatePaymentStatusAsync(id, status);
+    [HttpPost]
+    public async Task<IActionResult> Create(PaymentDTO paymentDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var createdPayment = await _paymentService.CreatePaymentAsync(paymentDto);
+            if (createdPayment != null)
+            {
+                return RedirectToAction("Index"); // Yeni ödəniş yaratdıqdan sonra ana səhifəyə yönləndiririk
+            }
 
-			TempData["Success"] = "Ödənişin statusu uğurla yeniləndi.";
-			return RedirectToAction(nameof(Index));
-		}
-		catch (Exception ex)
-		{
-			TempData["Error"] = $"Ödənişin statusu yenilənərkən xəta baş verdi: {ex.Message}";
-			return RedirectToAction(nameof(Index));
-		}
-	}
+            ModelState.AddModelError("", "Ödəniş yaratmaqda xəta baş verdi.");
+        }
 
-	[HttpPost]
-	public async Task<IActionResult> CreatePaymentSession(Payment paymentSession)
-	{
-		if (ModelState.IsValid)
-		{
-			// Stripe-ı çağırıb ödəniş sessiyasını yaradırıq
-			string sessionUrl = await _stripeService.CreateCheckoutSessionAsync(paymentSession);
+        return View(paymentDto); // Model səhv olarsa formu yenidən göstəririk
+    }
 
-			// İstifadəçini Stripe ödəniş səhifəsinə yönləndiririk
-			return Redirect(sessionUrl);
-		}
+    // Ödənişin statusunu yeniləmək
+    [HttpPost]
+    public async Task<IActionResult> UpdateStatus(int id, bool status)
+    {
+        try
+        {
+            await _paymentService.UpdatePaymentStatusAsync(id, status);
+            return RedirectToAction("Index"); // Statusu yenilədikdən sonra ana səhifəyə yönləndiririk
+        }
+        catch (ArgumentException)
+        {
+            return NotFound(); // Ödəniş tapılmadıqda 404 səhifəsi qaytarırıq
+        }
+    }
 
-		return View(paymentSession); // Model doğrulama səhvlərini göstərmək üçün
-	}
-	[HttpGet]
-	public async Task<IActionResult> GetAllPayments()
-	{
-		var payments = await _paymentService.GetAllPaymentsAsync();
-		return Json(payments);
-	}
+    // Ödənişi silmək
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var isDeleted = await _paymentService.DeletePaymentAsync(id);
+        if (isDeleted)
+        {
+            return RedirectToAction("Index"); // Silindikdən sonra ana səhifəyə yönləndiririk
+        }
+
+        return NotFound(); // Ödəniş tapılmadıqda 404 səhifəsi qaytarırıq
+    }
 }

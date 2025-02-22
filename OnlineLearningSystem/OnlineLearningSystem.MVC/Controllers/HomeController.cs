@@ -23,14 +23,14 @@ public class HomeController : Controller
 	{
         try
         {
-			HomeVM VM = new()
-			{
-				Statistics = new List<StatisticsDTO> { await _statisticsService.GetStatisticsAsync() },
-				Teachers = await _teacherService.GetTeacherViewItemsAsync(),
-				Courses = await _courseService.GetCourseViewItemsAsync(),
+            HomeVM VM = new()
+            {
+                Statistics = new List<StatisticsDTO> { await _statisticsService.GetStatisticsAsync() },
+                Teachers = await _teacherService.GetTeacherViewItemsAsync(),
+                Courses = await _courseService.GetCourseViewItemsAsync(),
 
-				Messages = await _contactService.GetViewItemsAsync()
-			};
+                Messages = await _contactService.GetViewItemsAsync()
+            };
 
 
 			return View(VM);

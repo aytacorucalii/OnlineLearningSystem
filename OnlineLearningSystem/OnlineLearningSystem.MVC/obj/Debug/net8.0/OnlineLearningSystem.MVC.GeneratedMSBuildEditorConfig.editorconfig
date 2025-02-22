@@ -70,16 +70,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/CreatePaymentSession.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxDcmVhdGVQYXltZW50U2Vzc2lvbi5jc2h0bWw=
+[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/GetAllPayments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxHZXRBbGxQYXltZW50cy5jc2h0bWw=
+[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Areas/Admin/Views/Payment/UpdateStatus.cshtml]
@@ -156,6 +156,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Views/Payment/CreateCheckoutSession.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxDcmVhdGVDaGVja291dFNlc3Npb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Views/Payment/PaymentCancel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxQYXltZW50Q2FuY2VsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Views/Payment/PaymentSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxQYXltZW50U3VjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hp/source/repos/OnlineLearningSystem/OnlineLearningSystem.MVC/Views/Teacher/Index.cshtml]

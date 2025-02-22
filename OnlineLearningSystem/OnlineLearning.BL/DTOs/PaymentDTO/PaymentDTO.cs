@@ -11,4 +11,9 @@ public class PaymentDTO
 	public PaymentStatus Status { get; set; }
 	public PaymentMethod Method { get; set; }
 	public DateTime PaymentDate { get; set; }
+    public string Currency { get; set; }
+    public string SuccessUrl { get; set; }
+    public string CancelUrl { get; set; }
+    public string SessionUrl { get; set; }
+    public bool IsSuccessful { get; set; }
 }
