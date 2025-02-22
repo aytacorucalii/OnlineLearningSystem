@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineLearning.BL.Services.Abstractions;
 using OnlineLearningSystem.MVC.ViewModels;
 
@@ -32,6 +33,8 @@ public class HomeController : Controller
                 Messages = await _contactService.GetViewItemsAsync()
             };
 
+			var courses = await _courseService.GetCourseListItemsAsync();
+			ViewData["Courses"] = new SelectList(courses, "Id", "CourseName");
 
 			return View(VM);
         }

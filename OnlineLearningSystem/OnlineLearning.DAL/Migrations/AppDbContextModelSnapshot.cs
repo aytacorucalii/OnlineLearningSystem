@@ -157,13 +157,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "514be1c9-fe18-43ea-be4a-3bb66e7e947e",
+                            ConcurrencyStamp = "c9cca19b-1048-4918-8f90-4d26ad6f6be0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHhwZxrlVmb8WukpY1b4Bv9rkz9+hHdvyy5S9EyTq+VE44Q+FpvYMxAGD1bbg6NrSg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHmZFzJPwZb06vFvM9o4AfVcvTdmw5uzrM9xNhk9rjEAeLQi/Bm2Sr6wzsq9FGwuPw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9913e65c-0714-459e-8473-c921f514d288",
+                            SecurityStamp = "2fa89741-7570-4671-bfc8-51bef11afbdf",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -266,10 +266,9 @@ namespace OnlineLearning.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -287,16 +286,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserRole")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -566,7 +556,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 22, 8, 18, 25, 551, DateTimeKind.Utc).AddTicks(8887));
+                        .HasDefaultValue(new DateTime(2025, 2, 22, 16, 51, 1, 476, DateTimeKind.Utc).AddTicks(9320));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
@@ -736,8 +726,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.HasOne("OnlineLearning.Core.Models.Course", "Course")
                         .WithMany("Contacts")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Course");
                 });

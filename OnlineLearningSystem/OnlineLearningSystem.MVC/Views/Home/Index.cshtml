@@ -227,6 +227,10 @@
 							style="width: 100%; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 15px;
         background-color: #fff; color: #333; font-weight: bold; padding: 10px;">
 						<option value="">-- Select a Course --</option>
+							@foreach (var course in (IEnumerable<SelectListItem>)ViewData["Courses"])
+							{
+								<option value="@course.Value">@course.Text</option>
+							}
 					</select>
 
 						<label style="font-weight: bold; color: #333;">Rating (1-5):</label>

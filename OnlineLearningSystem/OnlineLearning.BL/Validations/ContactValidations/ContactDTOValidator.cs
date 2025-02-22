@@ -10,16 +10,10 @@ public class ContactDTOValidator : AbstractValidator<ContactDTO>
 		RuleFor(e => e.Id)
 		   .GreaterThan(0).WithMessage("Id must be a natural number!");
 
-		RuleFor(x => x.UserId)
-			.NotEmpty().WithMessage("User ID cannot be empty!");
 
 		RuleFor(x => x.UserName)
 			.NotEmpty().WithMessage("UserName cannot be empty!")
 			.MaximumLength(100).WithMessage("Username must not be longer than 100 characters.");
-
-		RuleFor(x => x.UserRole)
-		   .NotEmpty().WithMessage("UserRole cannot be empty!")
-		   .MaximumLength(100).WithMessage("UserRole must not be longer than 100 characters.");
 
 		RuleFor(x => x.Comment)
 			.NotEmpty().WithMessage("Comment cannot be empty!")

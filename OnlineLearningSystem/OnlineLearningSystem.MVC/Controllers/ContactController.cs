@@ -51,10 +51,8 @@ public class ContactController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        await _service.UserCreateAsync(dto,
-            User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-        User.Identity.Name,
-            User.FindFirst(ClaimTypes.Role)?.Value
+		await _service.UserCreateAsync(dto,
+            User.Identity.Name
         );
         await _service.SaveChangesAsync();
 

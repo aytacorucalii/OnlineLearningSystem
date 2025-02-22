@@ -46,12 +46,10 @@ public class ContactService : IContactService
 		await _writeRepo.CreateAsync(Contact);
 	}
 
-	public async Task UserCreateAsync(ContactDTO userCreateDto, string UserId, string UserRole, string UserName)
+	public async Task UserCreateAsync(ContactDTO userCreateDto,string UserName)
 	{
 		Contact Contact = _mapper.Map<Contact>(userCreateDto);
 		Contact.UserName = UserName;
-		Contact.UserId = UserId;
-		Contact.UserRole = UserRole;
 		await _writeRepo.CreateAsync(Contact);
 	}
 
