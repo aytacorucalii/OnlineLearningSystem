@@ -14,5 +14,5 @@ public class Teacher : BaseAuditable
     public string ImgUrl { get; set; }
 
     // Bir müəllimin bir neçə kursu ola bilər
-    public ICollection<Course> Courses { get; set; } = new List<Course>();
+    public ICollection<Course>? Courses { get; set; } = new List<Course>();
 }

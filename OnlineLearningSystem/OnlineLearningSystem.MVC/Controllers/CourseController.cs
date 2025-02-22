@@ -33,18 +33,21 @@ public class CourseController : Controller
 		}
 	}
     [HttpGet]
-    public IActionResult SearchCourses(string searchTerm, int page = 1, int pageSize = 10)
+    public async Task<IActionResult> SearchCourses(string searchTerm, int page = 1, int pageSize = 10)
     {
         if (page < 1 || pageSize < 1)
         {
             return BadRequest("Səhifə dəyəri düzgün deyil");
         }
 
-        var courses = _courseService.SearchCourses(searchTerm)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
+        var courses = await _courseService.SearchCoursesAsync(searchTerm, page, pageSize);
+
+        //if (courses == null || !courses.Any())
+        //{
+        //    return NotFound("Axtarış nəticəsi tapılmadı");
+        //}
 
         return Ok(courses);
     }
+
 }

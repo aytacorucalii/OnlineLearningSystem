@@ -10,7 +10,7 @@ public class StudentCreateDTO
     public Grade Grade { get; set; }
     public Gender? Gender { get; set; }
     public IFormFile? Image { get; set; }
-    public string ImgUrl { get; set; }
+    public string? ImgUrl { get; set; }
     public List<SelectListItem> Courses { get; set; } = new List<SelectListItem>();
 }
 

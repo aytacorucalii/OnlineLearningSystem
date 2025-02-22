@@ -25,9 +25,9 @@ public class ContactDTOValidator : AbstractValidator<ContactDTO>
            .MinimumLength(2).WithMessage("Subject must be at least 2 symbols long!")
            .MaximumLength(1000).WithMessage("The length of the Subject cannot exceed 1000 symbols!");
         RuleFor(e => e.Phone)
-           .NotEmpty().WithMessage("Phone number cannot be empty!")
-           .Matches(@"^\+994\((70|10|50|51|55|71|77|99)\)\d{3}-\d{2}-\d{2}$")
-           .WithMessage("Invalid phone number format! Example: +994(xx)xxx-xx-xx");
+            .NotEmpty().WithMessage("Phone number cannot be empty!")
+            .Matches(@"^\+994(70|10|50|51|55|60|77|99)\d{7}$")
+            .WithMessage("Invalid phone number format! Example: +994xxxxxxxxx");
 
     }
 }

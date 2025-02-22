@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-3">
 						<div class="card">
-							<img src="~/assets/img/@course.ImgUrl" alt="...">
+							<img src="~/uploads/course/@course.ImgUrl" alt="explore image">
 							<div class="card-body">
 								<h4>@course.CourseName</h4>
 								<div class="wrap">
@@ -20,7 +20,7 @@
 										<i class="fa-regular fa-star"></i>
 										<i class="fa-regular fa-star"></i>
 									</div>
-									<form asp-area="Admin" asp-controller="Payment" asp-action="StartPayment" method="post">
+									<form asp-area="Admin" asp-controller="Payment" asp-action="CreatePaymentSession" method="post">
 										<button type="submit">@course.Price</button>
 									</form>
 

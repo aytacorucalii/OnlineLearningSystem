@@ -14,12 +14,12 @@ public class Statistics : BaseEntity
 //search etmenin viewsu yoxdur (coureservice) chatgpt basa dusmur
 //payment var isleyir yeqin ki secretkey var onun da viewsu yoxdu
 //payment istese evvel login sonra payment
-//create update ishlemir add olunmur duymeye basanda 
-//dizayn duzelmelidir + course select pisdir
+//create update ishlemir add olunmur duymeye basanda foreinkey diqqet
+//dizayn duzelmelidir + studentde course select pisdir
 //message duzgun islemir
 
 //settings footer isleyir 
 //email isleyir
 //login register isleyir cox sukur
-//statistica deyismesi hazirdir check olunmalidir
+//statistica deyismesi hazirdir
 //Amin Allah razi olsun eger baxsan :( 

@@ -9,7 +9,6 @@ public class CourseCreateDTO
     public decimal Price { get; set; }
     public CourseDuration? Duration { get; set; }
     public IFormFile? Image { get; set; }  // Şəkil faylı üçün
-    public string ImgUrl { get; set; }  // Fayl yükləndikdən sonra URL təyin ediləcək
-    public int TeacherId { get; set; }
+    public string? ImgUrl { get; set; }  // Fayl yükləndikdən sonra URL təyin ediləcək
 }
 

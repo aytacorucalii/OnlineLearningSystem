@@ -1,6 +1,6 @@
 ﻿@model ContactDTO
 
-<section class="conteact" id="contact">
+<section class="contact" id="contact">
     <h2 class="title">Contact <span>With</span> US</h2>
 
     @if (TempData["SuccessMessage"] != null)
@@ -16,24 +16,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="p-4 border rounded shadow bg-light">
-                    <form id="contactForm">
+
+                    <!-- Form -->
+                    <form id="contactForm" method="post" asp-controller="Contact" asp-action="SendMessage">
                         <div class="input-group mb-3">
                             <input type="text" id="FullName" asp-for="FullName" class="form-control" placeholder="Name Surname.." required />
-                            <input type="number" id="Phone" asp-for="Phone" class="form-control" placeholder="+994(XX)XXX-XX-XX" required />
+                            <input type="text" id="Phone" asp-for="Phone" class="form-control" placeholder="+994(XX)XXX-XX-XX" required />
                         </div>
 
                         <div class="input-group mb-3">
                             <input type="email" id="Email" asp-for="Email" class="form-control" placeholder="example@gmail.com" required />
-                            <input type="text" id="Subject" asp-for="Subject" class="form-control" placeholder="Text for .." required />
+                            <input type="text" id="Subject" asp-for="Subject" class="form-control" placeholder="Subject.." required />
                         </div>
 
                         <div class="mb-3">
                             <textarea id="Message" asp-for="Message" class="form-control" rows="4" placeholder="Message.." required></textarea>
                         </div>
 
-                        <input type="submit" asp-controller="Contact" asp-action="SendMessage" class="btn btn-primary w-100">
+                        <button type="submit" class="btn btn-primary w-100">Send</button>
                         <p id="responseMessage" class="mt-3 text-center"></p>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -42,54 +45,12 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            // Format phone number as the user types, with +994 and fixed parentheses and dashes
-            $('#Phone').on('input', function () {
-                var phone = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters
-                var formattedPhone = '+994 ('; // Start with +994
-
-                if (phone.length > 0) {
-                    formattedPhone += phone.substring(0, 2); // First 2 digits in parentheses
-                }
-                if (phone.length > 2) {
-                    formattedPhone += ') ' + phone.substring(2, 5); // Next 3 digits after parentheses
-                }
-                if (phone.length > 5) {
-                    formattedPhone += '-' + phone.substring(5, 7); // After dash, first 2 digits
-                }
-                if (phone.length > 7) {
-                    formattedPhone += '-' + phone.substring(7, 9); // After dash, next 2 digits
-                }
-
-                $(this).val(formattedPhone); // Update the input value with the formatted phone number
-            });
-
-            $("#contactForm").submit(function (event) {
-                event.preventDefault();
-
-                var formData = {
-                    FullName: $("#FullName").val(),
-                    Email: $("#Email").val(),
-                    Phone: $("#Phone").val(),
-                    Subject: $("#Subject").val(),
-                    Message: $("#Message").val()
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Contact/SendMessage",
-                    contentType: "application/json",
-                    data: JSON.stringify(formData),
-                    success: function (response) {
-                        $("#responseMessage").text(response.message).css("color", "green");
-                        $("#contactForm")[0].reset();
-                    },
-                    error: function (xhr) {
-                        $("#responseMessage").text(xhr.responseJSON.error).css("color", "red");
-                    }
-                });
-            });
+        // Formun Enter basıldığında göndərilməsi
+        document.getElementById("contactForm").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Səhifənin yenilənməsinin qarşısını alır
+                this.submit(); // Formu göndərir
+            }
         });
-
     </script>
 }

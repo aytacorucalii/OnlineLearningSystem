@@ -30,17 +30,17 @@ public class ContactController : Controller
     [HttpPost]
     public IActionResult SendMessage(ContactDTO model)
     {
-        try
-        {
+        //try
+        //{
             _service.SendMessage(model);
             TempData["SuccessMessage"] = "Mesaj uğurla göndərildi!";
             return RedirectToAction("Index");
-        }
-        catch (Exception ex)
-        {
-            TempData["ErrorMessage"] = "Xəta baş verdi: " + ex.Message;
-            return RedirectToAction("Index");
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    TempData["ErrorMessage"] = "Xəta baş verdi: " + ex.Message;
+        //    return RedirectToAction("Index");
+        //}
 
     }
 }

@@ -816,6 +816,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\OnlineLearningSystem.MVC.bundle.scp.css))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\09bc7c5d-8c5b-446f-9f13-a49287062c10download (7).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/course/09bc7c5d-8c5b-446f-9f13-a49287062c10download (7).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\09bc7c5d-8c5b-446f-9f13-a49287062c10download (7).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>OnlineLearningSystem.MVC</SourceId>
@@ -896,6 +912,102 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\aeca220e-df2b-4653-b6ef-4d219a125406download (6).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/course/aeca220e-df2b-4653-b6ef-4d219a125406download (6).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\aeca220e-df2b-4653-b6ef-4d219a125406download (6).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/course/ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/course/f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/course/fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/student/09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\1d4f0e42-2a02-41be-9510-ba4cdc94a64bimages.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/student/1d4f0e42-2a02-41be-9510-ba4cdc94a64bimages.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\1d4f0e42-2a02-41be-9510-ba4cdc94a64bimages.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>OnlineLearningSystem.MVC</SourceId>
@@ -911,6 +1023,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\student\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\teacher\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineLearningSystem.MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineLearningSystem.MVC</BasePath>
+      <RelativePath>uploads/teacher/3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\teacher\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\teacher\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg))">
       <SourceType>Package</SourceType>

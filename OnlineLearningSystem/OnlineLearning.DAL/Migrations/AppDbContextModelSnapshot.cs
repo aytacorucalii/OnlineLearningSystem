@@ -157,13 +157,13 @@ namespace OnlineLearning.DAL.Migrations
                         {
                             Id = "90f58f47-7bd6-4005-b6ee-e40f632a8fc3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6d2467d8-44b8-43df-b19c-ef068f716f2b",
+                            ConcurrencyStamp = "86d4d04d-5968-4f44-839f-8eb8697e92fb",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEESRAvRuWXDc3+YF0opqhGiWzI5bXTuDiN9rUQYquuH9UaYw4pEfKfeDILBaqbU5kA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM9zAk+n3BurAPhOdzXlDRoz+34orKgCPkX6WKHNTFMqGndgcTcKu9gQqLFImsks5w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "17c97cae-1a0e-42b9-b04d-1dc19714101f",
+                            SecurityStamp = "f34ca1b5-fb35-467a-9c13-58f10c3ee37c",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -354,7 +354,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<int>("RatingCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherId")
+                    b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -562,7 +562,7 @@ namespace OnlineLearning.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 2, 21, 7, 34, 43, 589, DateTimeKind.Utc).AddTicks(6786));
+                        .HasDefaultValue(new DateTime(2025, 2, 21, 18, 22, 44, 936, DateTimeKind.Utc).AddTicks(948));
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
@@ -731,9 +731,7 @@ namespace OnlineLearning.DAL.Migrations
                 {
                     b.HasOne("OnlineLearning.Core.Models.Teacher", "Teacher")
                         .WithMany("Courses")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeacherId");
 
                     b.Navigation("Teacher");
                 });

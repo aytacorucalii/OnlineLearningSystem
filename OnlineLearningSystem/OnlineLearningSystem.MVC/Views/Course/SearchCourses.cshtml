@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Kurs Axtar";
+}
+
+<h2>Kurs Axtar</h2>
+
+<input type="text" id="searchInput" placeholder="Kurs adı daxil edin..." />
+<button id="searchBtn">Axtar</button>
+
+<ul id="searchResults"></ul>
+
+@section Scripts {
+    <script>
+        document.getElementById("searchBtn").addEventListener("click", function () {
+            var searchTerm = document.getElementById("searchInput").value;
+            fetch(`/Course/SearchCourses?searchTerm=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultList = document.getElementById("searchResults");
+                    resultList.innerHTML = "";
+                    data.forEach(course => {
+                        let li = document.createElement("li");
+                        li.textContent = course.courseName;
+                        resultList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error("Xəta baş verdi:", error));
+        });
+    </script>
+}

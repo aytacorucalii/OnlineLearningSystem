@@ -14,8 +14,8 @@ public class Course : BaseAuditable
     public CourseDuration? Duration { get; set; } 
 
     // Hər kursun bir müəllimi olur (One-to-Many əlaqə)
-    public int TeacherId { get; set; }
-    public Teacher Teacher { get; set; }
+    public int? TeacherId { get; set; }
+    public Teacher? Teacher { get; set; }
 
     // Many-to-Many əlaqəsi
     public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();

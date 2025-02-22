@@ -205,6 +205,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\web-design.png"
     },
     {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\09bc7c5d-8c5b-446f-9f13-a49287062c10download (7).jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\09bc7c5d-8c5b-446f-9f13-a49287062c10download (7).jpg"
+    },
+    {
       "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg",
       "PackagePath": "staticwebassets\\uploads\\course\\0b9697ce-f5a3-427e-908f-48e0332c1c4bWIN_20240516_15_07_42_Pro.jpg"
     },
@@ -225,8 +229,36 @@
       "PackagePath": "staticwebassets\\uploads\\course\\9c97d79d-951c-4758-b277-18d538a3259bWIN_20240516_15_07_42_Pro.jpg"
     },
     {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\aeca220e-df2b-4653-b6ef-4d219a125406download (6).jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\aeca220e-df2b-4653-b6ef-4d219a125406download (6).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\ecf14a4a-b81d-4162-ac88-5586ded0f613download (6).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\f1f3e41b-542b-4e70-afa1-9b9a5f7d02e2download (6).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\course\\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg",
+      "PackagePath": "staticwebassets\\uploads\\course\\fcedeaf9-67cf-482b-9776-ef2e56b3dbc7download (13).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\student\\09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg",
+      "PackagePath": "staticwebassets\\uploads\\student\\09b64cac-d86c-4ceb-aae1-829205e60fe7download (6).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\student\\1d4f0e42-2a02-41be-9510-ba4cdc94a64bimages.jpg",
+      "PackagePath": "staticwebassets\\uploads\\student\\1d4f0e42-2a02-41be-9510-ba4cdc94a64bimages.jpg"
+    },
+    {
       "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\student\\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg",
       "PackagePath": "staticwebassets\\uploads\\student\\2444bab8-d1b2-4a0d-bdd0-4f1d78dc10daWIN_20240516_15_07_27_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg",
+      "PackagePath": "staticwebassets\\uploads\\teacher\\3b8bec36-6b5b-4a14-b36d-ec104375818ddownload (1).jpg"
     },
     {
       "Id": "C:\\Users\\Hp\\source\\repos\\OnlineLearningSystem\\OnlineLearningSystem.MVC\\wwwroot\\uploads\\teacher\\78dba3b0-f1e8-4356-a493-40913c4888f9WIN_20240516_15_07_51_Pro.jpg",

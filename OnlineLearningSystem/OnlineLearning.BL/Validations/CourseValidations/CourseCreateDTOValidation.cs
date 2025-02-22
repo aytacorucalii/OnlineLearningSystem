@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using OnlineLearning.BL.Utilities;
 
 namespace OnlineLearning.BL.Validations.CourseValidations;
 

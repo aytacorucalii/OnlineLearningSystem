@@ -10,7 +10,7 @@
                 <div class="col-md-4">
                     @if (!string.IsNullOrEmpty(Model.ImgUrl))
                     {
-                        <img src="@Model.ImgUrl" alt="Course Image" class="img-fluid rounded">
+                        <img style="width: 200px" src="~/uploads/course/@Model.ImgUrl" />
                     }
                     else
                     {

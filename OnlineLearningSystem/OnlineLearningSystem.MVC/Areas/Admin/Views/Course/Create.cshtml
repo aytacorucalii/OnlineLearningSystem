@@ -3,13 +3,13 @@
     SelectList teachers = ViewData["Teachers"] as SelectList;
 }
 
-<div class="container-fluid">
+<div class="container-fluid"> 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Create New Course</h6>
         </div>
         <div class="card-body">
-            <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <form asp-action="Create" class="container" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label asp-for="CourseName">Course Name</label>
@@ -42,7 +42,7 @@
                     <input asp-for="Image" class="form-control-file" type="file" required />
                     <span class="text-danger" asp-validation-for="Image"></span>
                 </div>
-
+                <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>
                 <!-- Button and Back Link for consistency -->
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Create Course</button>

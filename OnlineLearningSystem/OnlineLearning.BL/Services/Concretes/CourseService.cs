@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Exceptions;
 using OnlineLearning.BL.Services.Abstractions;
@@ -53,6 +54,7 @@ public class CourseService : ICourseService
         course.CreatedAt = oldCourse.CreatedAt;
         course.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("course") : oldCourse.ImgUrl;
         _writeRepo.Update(course);
+        if (dto.Image is not null) File.Delete(Path.Combine(Path.GetFullPath("wwwroot"), "uploads", "course", oldCourse.ImgUrl));
     }
 
     public async Task DeleteAsync(int id)
@@ -69,17 +71,23 @@ public class CourseService : ICourseService
     public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();
 
 
-    public List<Course> SearchCourses(string searchTerm)
+    public async Task<List<CourseListItemDTO>> SearchCoursesAsync(string searchTerm, int page = 1, int pageSize = 10)
     {
         if (string.IsNullOrWhiteSpace(searchTerm))
         {
-            return new List<Course>();
+            return new List<CourseListItemDTO>();
         }
 
-        return _readRepo.GetCourses()
+        var query = _readRepo.GetCourses()
             .Where(c => c.CourseName.ToLower().Contains(searchTerm.ToLower()))
-            .OrderBy(c => c.CourseName)
-            .Take(10)
-            .ToList();
+            .OrderBy(c => c.CourseName);
+
+        var courses = await query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return _mapper.Map<List<CourseListItemDTO>>(courses);
     }
+
 }
