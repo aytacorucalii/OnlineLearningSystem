@@ -57,7 +57,7 @@ public class TeacherService : ITeacherService
         var updatedTeacher = _mapper.Map<Teacher>(dto);
 
         updatedTeacher.CreatedAt = oldTeacher.CreatedAt;
-        updatedTeacher.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("places") : oldTeacher.ImgUrl;
+        updatedTeacher.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("teacher") : oldTeacher.ImgUrl;
 
         _writeRepo.Update(updatedTeacher);
         if (dto.Image is not null) File.Delete(Path.Combine(Path.GetFullPath("wwwroot"), "uploads", "teacher", oldTeacher.ImgUrl));

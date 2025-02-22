@@ -11,6 +11,6 @@ public class StudentCreateDTO
     public Gender? Gender { get; set; }
     public IFormFile? Image { get; set; }
     public string? ImgUrl { get; set; }
-    public List<SelectListItem> Courses { get; set; } = new List<SelectListItem>();
+    public List<int> Courses { get; set; } 
 }
 

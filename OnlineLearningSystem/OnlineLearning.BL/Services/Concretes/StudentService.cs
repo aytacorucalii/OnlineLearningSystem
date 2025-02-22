@@ -13,14 +13,16 @@ public class StudentService : IStudentService
     readonly IStudentReadRepository _readRepo;
     readonly IStudentWriteRepository _writeRepo;
     readonly IStatisticsService _statisticsService;
+    readonly ICourseReadRepository _courseRepo;
     readonly IMapper _mapper;
 
-	public StudentService(IMapper mapper, IStudentWriteRepository writeRepo, IStudentReadRepository readRepo, IStatisticsService statisticsService)
+	public StudentService(IMapper mapper, IStudentWriteRepository writeRepo, IStudentReadRepository readRepo, IStatisticsService statisticsService, ICourseReadRepository courseRepo)
 	{
 		_mapper = mapper;
 		_writeRepo = writeRepo;
 		_readRepo = readRepo;
 		_statisticsService = statisticsService;
+		_courseRepo = courseRepo;
 	}
 
 	public async Task<Student> GetByIdAsync(int id) =>
@@ -38,17 +40,28 @@ public class StudentService : IStudentService
     public async Task<ICollection<StudentViewItemDTO>> GetStudentViewItemsAsync() =>
         _mapper.Map<ICollection<StudentViewItemDTO>>(await _readRepo.GetAllAsync("StudentCourses.Course"));
 
-    public async Task CreateAsync(StudentCreateDTO dto)
-    {
-        Student student = _mapper.Map<Student>(dto);
-        student.ImgUrl = await dto.Image.SaveAsync("student");
-        await _writeRepo.CreateAsync(student);
-		await _statisticsService.IncrementStudentCount();
+	public async Task CreateAsync(StudentCreateDTO dto)
+	{
+		foreach (var courseId in dto.Courses)
+		{
+			if (await _courseRepo.GetByIdAsync(courseId) is null)
+				throw new BaseException($"Course with ID {courseId} not found!");
+		}
 
+		Student student = _mapper.Map<Student>(dto);
+		student.ImgUrl = await dto.Image.SaveAsync("student");
+		await _writeRepo.CreateAsync(student);
+		await _statisticsService.IncrementStudentCount();
 	}
-    public async Task UpdateAsync(StudentUpdateDTO dto)
+
+	public async Task UpdateAsync(StudentUpdateDTO dto)
     {
-        Student oldStudent = await GetByIdAsync(dto.Id);
+		foreach (var courseId in dto.Courses)
+		{
+			if (await _courseRepo.GetByIdAsync(courseId) is null)
+				throw new BaseException($"Course with ID {courseId} not found!");
+		}
+		Student oldStudent = await GetByIdAsync(dto.Id);
         Student student = _mapper.Map<Student>(dto);
         student.CreatedAt = oldStudent.CreatedAt;
         student.ImgUrl = dto.Image is not null ? await dto.Image.SaveAsync("student") : oldStudent.ImgUrl;

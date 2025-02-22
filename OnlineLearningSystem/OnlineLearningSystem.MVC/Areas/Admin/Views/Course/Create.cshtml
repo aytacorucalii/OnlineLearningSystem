@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <label asp-for="Image">Course Image</label>
-                    <input asp-for="Image" class="form-control-file" type="file" required />
+                    <input asp-for="Image" class="form-control-file" type="file" />
                     <span class="text-danger" asp-validation-for="Image"></span>
                 </div>
                 <p class="text-danger text-center">@Html.ValidationMessage("CustomError")</p>

@@ -4,7 +4,12 @@ namespace OnlineLearning.BL.Services.Abstractions;
 
 public interface IContactService
 {
-    Task CreateAsync(ContactDTO dto);
-    Task<ICollection<ContactDTO>> GetStudentListItemsAsync();
-    void SendMessage(ContactDTO message);
+	Task<ICollection<ContactDTO>> GetViewItemsAsync();
+	Task<ICollection<ContactDTO>> GetAllAsync();
+	Task<ContactDTO?> GetByIdAsync(int id);
+	Task CreateAsync(ContactDTO messageCreateDto);
+	Task UserCreateAsync(ContactDTO userCreateDto, string UserId, string UserRole, string UserName);
+	Task<bool> UpdateAsync(ContactDTO messageUpdateDto);
+	Task<bool> DeleteAsync(int id);
+	Task<int> SaveChangesAsync();
 }

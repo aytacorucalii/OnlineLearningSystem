@@ -4,9 +4,11 @@ namespace OnlineLearning.Core.Models;
 
 public class Contact: BaseEntity
 {
-	public string FullName { get; set; }
-	public string Email { get; set; }
-	public string Phone { get; set; }
-	public string Subject { get; set; }
-	public string Message { get; set; }
+	public string UserId { get; set; }
+	public string UserName { get; set; }
+	public string UserRole { get; set; }
+	public string Comment { get; set; }
+	public double Rating { get; set; }
+	public int CourseId { get; set; }
+	public Course? Course { get; set; }
 }

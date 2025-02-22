@@ -24,6 +24,7 @@ public class CourseController : Controller
 				Courses = await _courseService.GetCourseViewItemsAsync()
 			};
 
+			ViewData["Courses"] = VM.Courses;
 
 			return View(VM);
 		}

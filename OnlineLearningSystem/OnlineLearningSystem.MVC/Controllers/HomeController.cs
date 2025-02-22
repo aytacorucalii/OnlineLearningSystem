@@ -9,13 +9,14 @@ public class HomeController : Controller
     readonly ITeacherService _teacherService;
 	readonly ICourseService _courseService;
     readonly IStatisticsService _statisticsService;
-   // readonly ILayoutService _layoutService;
+    readonly IContactService _contactService;
 
-	public HomeController(ICourseService courseService, ITeacherService teacherService, IStatisticsService statisticsService)
+	public HomeController(ICourseService courseService, ITeacherService teacherService, IStatisticsService statisticsService, IContactService contactService)
 	{
 		_courseService = courseService;
 		_teacherService = teacherService;
 		_statisticsService = statisticsService;
+		_contactService = contactService;
 	}
 
 	public async Task<IActionResult> Index()
@@ -26,7 +27,9 @@ public class HomeController : Controller
 			{
 				Statistics = new List<StatisticsDTO> { await _statisticsService.GetStatisticsAsync() },
 				Teachers = await _teacherService.GetTeacherViewItemsAsync(),
-				Courses = await _courseService.GetCourseViewItemsAsync()
+				Courses = await _courseService.GetCourseViewItemsAsync(),
+
+				Messages = await _contactService.GetViewItemsAsync()
 			};
 
 

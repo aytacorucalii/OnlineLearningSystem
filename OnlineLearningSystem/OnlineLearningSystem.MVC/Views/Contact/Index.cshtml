@@ -1,56 +1,104 @@
-﻿@model ContactDTO
+﻿<section class="conteact" id="contact">
+	<h2 class="title">Contact <span>With</span> US</h2>
+	<div class="wrap" style="margin-bottom: 20px;">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97726.31073809757!2d49.8554611!3d40.4092776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403071404905ed4f%3A0x616a8fae5fd4e0be!2sCodeAcademy%20Baku!5e0!3m2!1sen!2saz!4v1718289935991!5m2!1sen!2saz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+	@if (User.Identity.IsAuthenticated)
+	{
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<form asp-action="Create" asp-controller="Contact" method="post"
+						  style="max-width: 500px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;
+    border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
 
-<section class="contact" id="contact">
-    <h2 class="title">Contact <span>With</span> US</h2>
+						<h3 style="text-align: center; margin-bottom: 20px; color: #333;">Write a Message</h3>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
-    }
+						<label style="font-weight: bold; color: #333;">Select Course:</label>
+						<select name="CourseId" class="form-control" required
+								style="width: 100%; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 15px;
+        background-color: #fff; color: #333; font-weight: bold; padding: 10px;">
+							<option value="">-- Select a Course --</option>
+						</select>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="p-4 border rounded shadow bg-light">
+						<label style="font-weight: bold; color: #333;">Rating (1-5):</label>
+						<input type="number" name="Rating" min="1" max="5" required class="form-control"
+							   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px;
+        margin-bottom: 15px; background-color: #fff; color: #333; font-weight: bold;">
 
-                    <!-- Form -->
-                    <form id="contactForm" method="post" asp-controller="Contact" asp-action="SendMessage">
-                        <div class="input-group mb-3">
-                            <input type="text" id="FullName" asp-for="FullName" class="form-control" placeholder="Name Surname.." required />
-                            <input type="text" id="Phone" asp-for="Phone" class="form-control" placeholder="+994(XX)XXX-XX-XX" required />
-                        </div>
+						<label style="font-weight: bold; color: #333;">Your message:</label>
+						<textarea name="Comment" required class="form-control"
+								  style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px;
+        margin-bottom: 15px; height: 150px; background-color: #fff; color: #333; font-weight: bold;"></textarea>
 
-                        <div class="input-group mb-3">
-                            <input type="email" id="Email" asp-for="Email" class="form-control" placeholder="example@gmail.com" required />
-                            <input type="text" id="Subject" asp-for="Subject" class="form-control" placeholder="Subject.." required />
-                        </div>
+						<button type="submit" class="btn btn-primary mt-2"
+								style="width: 100%; padding: 12px; background-color: #28a745; border: none;
+    color: white; font-size: 16px; border-radius: 4px; cursor: pointer;
+    transition: background-color 0.3s;">
+							Submit Message
+						</button>
+					</form>
 
-                        <div class="mb-3">
-                            <textarea id="Message" asp-for="Message" class="form-control" rows="4" placeholder="Message.." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Send</button>
-                        <p id="responseMessage" class="mt-3 text-center"></p>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
+					@if (TempData["SuccessMessage"] != null)
+					{
+						<div class="alert alert-success mt-2" style="text-align: center; background-color: #28a745; color: white; padding: 10px; border-radius: 4px;">
+							@TempData["SuccessMessage"]
+						</div>
+					}
+				</div>
+				<div class="col-4">
+					<div class="before">
+						<h5>Before Contacting Us</h5>
+						<p>The course is delivered with lessons prepared by experienced experts, enriched with practical knowledge, easy to understand, and application-oriented. Each topic is supported by practical exercises so that participants can apply them in real-world projects.</p>
+					</div>
+					<div class="info">
+						<h5>Contact Information</h5>
+						<p>
+							<i class="fa-regular fa-paper-plane"></i>
+							<small class="address">Azərbaycan,Bakı</small>
+						</p>
+						<p>
+							<i class="fa-solid fa-mobile-screen-button"></i>
+							<small>+994(70)546-75-01</small>
+						</p>
+						<p>
+							<i class="fa-regular fa-envelope"></i>
+							<small>aytacho-ab205@code.edu.az</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else
+	{
+		<p style="text-align: center; color: #fff; font-size: 16px;">
+			You must be logged in to write a message.
+			<a asp-area="Admin" asp-action="Login" asp-controller="Account" style="color: #FF214F; font-weight: bold;">Login here</a>
+		</p>
+	}
+	<div id="testmonial" class="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+		<h2 class="section-title my-5 text-center">Message</h2>
+		<div class="row mt-3 mb-5">
+			@if (Model.Courses != null && Model.Courses.Any())
+			{
+				@foreach (ContactDTO message in Model.Messages)
+				{
+					<div class="col-md-4 my-3 my-md-0">
+						<div class="testmonial-card">
+							<div>
+								<strong>⭐ @message.Rating</strong>
+							</div>
+							<div class="testmonial-body">
+								<p>@message.Comment</p>
+							</div>
+						</div>
+					</div>
+				}
+			}
+			else
+			{
+				<p style="text-align: center; color: white;">No message available.</p>
+			}
+		</div>
 </section>
-
-@section Scripts {
-    <script>
-        // Formun Enter basıldığında göndərilməsi
-        document.getElementById("contactForm").addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Səhifənin yenilənməsinin qarşısını alır
-                this.submit(); // Formu göndərir
-            }
-        });
-    </script>
-}

@@ -1,11 +1,12 @@
 ﻿@model HomeVM
 
-@if (ViewBag.Message != null)
+@if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-	<div class="alert alert-@ViewBag.MessageType">
+	<div class="alert @(string.IsNullOrEmpty(ViewBag.MessageType) ? "alert-info" : $"alert-{ViewBag.MessageType}")">
 		@ViewBag.Message
 	</div>
 }
+
 
 <!-- -- Home page Start -- -->
 
@@ -57,12 +58,13 @@
 			<div class="title">
 				<p>Choose <span>Your</span> Course</p>
 			</div>
-			@foreach (CourseViewItemDTO course in Model.Courses)
-			{
-				<div class="row">
+			<div class="row">
+				@foreach (CourseViewItemDTO course in Model.Courses)
+				{
 					<div class="col-3">
 						<div class="card">
-							<img src="~/assets/img/@course.ImgUrl" alt="...">
+							<!-- Şəkili düzgün yerə yerləşdirmək üçün class əlavə edirik -->
+							<img src="~/uploads/course/@course.ImgUrl" alt="explore image" class="profile-card">
 							<div class="card-body">
 								<h4>@course.CourseName</h4>
 								<div class="wrap">
@@ -74,7 +76,6 @@
 									<form asp-area="Admin" asp-controller="Payment" asp-action="CreatePaymentSession" method="post">
 										<button type="submit">@course.Price</button>
 									</form>
-
 								</div>
 							</div>
 							<div class="card-footer">
@@ -82,11 +83,13 @@
 								<small style="color: #999;">8 Weeks</small>
 							</div>
 						</div>
-					</div>	
-				</div>
-			}
+					</div>
+				}
+			</div>
+		</div>
 	</section>
 }
+
 
 <!-- find course section start  -->
 
@@ -95,30 +98,31 @@
 		<div class="row">
 			<div class="col-3" style="background: #F36371; color: #fff;">
 				<div class="wrap">
-					<h3>Kurs haqqında</h3>
-					<p class="text">Kurs,təcrübəli mütəxəssislər tərəfindən hazırlanan, təcrübə ilə zəngin, asan başa düşülən və tətbiqə yönəlmiş dərslərlə təqdim edilir.</p>
-					<a href="">Ətraflı</a>
+					<h3>About the Course</h3>
+					<p class="text">The course is presented with lessons prepared by experienced professionals, rich in practical experience, easy to understand, and application-oriented.</p>
+					<a href="">Learn More</a>
 				</div>
 			</div>
 			<div class="col-3" style="background: #E5B14C; color: #fff;">
 				<div class="wrap">
-					<h3>Açılış saatları</h3>
+					<h3>Opening Hours</h3>
 					<div class="time">
-						<p>Həftə içi<span>8.00 - 22.00</span></p>
-						<p>Şənbə <span>8.00 - 18.00</span></p>
-						<p>Bazar <span>8.00 - 18.00</span></p>
+						<p>Weekdays<span>8:00 AM - 10:00 PM</span></p>
+						<p>Saturday <span>8:00 AM - 6:00 PM</span></p>
+						<p>Sunday <span>8:00 AM - 6:00 PM</span></p>
 					</div>
-					<a href="">Ətarflı</a>
+					<a href="">Learn More</a>
 				</div>
 			</div>
 			<div class="col-6" style="background: #098; color: #fff;">
 				<div class="wrap">
-					<h3>Kurs Seç</h3>
+					<h3>Select Course</h3>
 					<form>
 						<div class="input-site">
 							<div class="w-50">
 								<select name="" id="course">
-									<option value="">Kurs Seç</option>
+									<option value="">Select Course</option>
+
 									<option value="">Web Design</option>
 									<option value="">UI & UX Desing</option>
 									<option value="">Digital Marketing</option>
@@ -177,51 +181,78 @@
 	</section>
 	}
 }
-
 @if (Model.Teachers.Count > 0)
 {
 	<section class="faculty" id="faculty">
 		<div class="container">
 			<h2 class="title">Teachers</h2>
 			<div class="row">
-				<div class="col-3">
-					@foreach (TeacherViewItemDTO teacher in Model.Teachers)
-					{
+				@foreach (TeacherViewItemDTO teacher in Model.Teachers)
+				{
+					<div class="col-3">
 						<div class="card">
-							<img src="~/assets/img/@teacher.ImgUrl" alt="..." class="profile-card">
+							<!-- Şəkili düzgün yerə yerləşdirmək üçün class əlavə edirik -->
+							<img src="~/uploads/teacher/@teacher.ImgUrl" alt="explore image" class="profile-card">
 							<div class="card-body">
 								<h3>@teacher.Name</h3>
 								<p>@teacher.Subject</p>
 							</div>
 						</div>
-					}
-				</div>			
+					</div>
+				}
 			</div>
 		</div>
 	</section>
 }
+
 
 <section class="conteact" id="contact">
 	<h2 class="title">Contact <span>With</span> US</h2>
 	<div class="wrap" style="margin-bottom: 20px;">
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97726.31073809757!2d49.8554611!3d40.4092776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403071404905ed4f%3A0x616a8fae5fd4e0be!2sCodeAcademy%20Baku!5e0!3m2!1sen!2saz!4v1718289935991!5m2!1sen!2saz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
-
+	@if (User.Identity.IsAuthenticated)
+{
 	<div class="container">
 		<div class="row">
 			<div class="col-8">
-				<form>
-					<div class="input-group">
-						<input type="text" placeholder="Ad Soyad..">
-						<input type="number" placeholder="+994(XX)XXX-XX-XX">
-					</div>
-					<div class="input-group">
-						<input type="email" placeholder="example@gmail.com">
-						<input type="text" placeholder="Text for ..">
-					</div>
-					<textarea placeholder="Message.."></textarea>
-					<input type="submit" value="Send Message">
-				</form>
+					<form asp-action="Create" asp-controller="Contact" method="post"
+						  style="max-width: 500px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;
+    border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
+
+						<h3 style="text-align: center; margin-bottom: 20px; color: #333;">Write a Message</h3>
+
+						<label style="font-weight: bold; color: #333;">Select Course:</label>
+						<select name="CourseId" class="form-control" required
+								style="width: 100%; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 15px;
+        background-color: #fff; color: #333; font-weight: bold; padding: 10px;">
+							<option value="">-- Select a Course --</option>
+						</select>
+
+						<label style="font-weight: bold; color: #333;">Rating (1-5):</label>
+						<input type="number" name="Rating" min="1" max="5" required class="form-control"
+							   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px;
+        margin-bottom: 15px; background-color: #fff; color: #333; font-weight: bold;">
+
+						<label style="font-weight: bold; color: #333;">Your message:</label>
+						<textarea name="Comment" required class="form-control"
+								  style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px;
+        margin-bottom: 15px; height: 150px; background-color: #fff; color: #333; font-weight: bold;"></textarea>
+
+						<button type="submit" class="btn btn-primary mt-2"
+								style="width: 100%; padding: 12px; background-color: #28a745; border: none;
+    color: white; font-size: 16px; border-radius: 4px; cursor: pointer;
+    transition: background-color 0.3s;">
+							Submit Message
+						</button>
+					</form>
+
+					@if (TempData["SuccessMessage"] != null)
+					{
+						<div class="alert alert-success mt-2" style="text-align: center; background-color: #28a745; color: white; padding: 10px; border-radius: 4px;">
+							@TempData["SuccessMessage"]
+						</div>
+					}
 			</div>
 			<div class="col-4">
 				<div class="before">
@@ -246,4 +277,36 @@
 			</div>
 		</div>
 	</div>
+	}
+	else
+	{
+		<p style="text-align: center; color: #fff; font-size: 16px;">
+			You must be logged in to write a message.
+			<a asp-area="Admin" asp-action="Login" asp-controller="Account" style="color: #FF214F; font-weight: bold;">Login here</a>
+		</p>
+	}
+	<div id="testmonial" class="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+		<h2 class="section-title my-5 text-center">Message</h2>
+		<div class="row mt-3 mb-5">
+			@if (Model.Courses != null && Model.Courses.Any())
+			{
+				@foreach (ContactDTO message in Model.Messages)
+				{
+					<div class="col-md-4 my-3 my-md-0">
+						<div class="testmonial-card">
+							<div>
+								<strong>⭐ @message.Rating</strong>
+							</div>
+							<div class="testmonial-body">
+								<p>@message.Comment</p>
+							</div>
+						</div>
+					</div>
+				}
+			}
+			else
+			{
+				<p style="text-align: center; color: white;">No message available.</p>
+			}
+		</div>
 </section>

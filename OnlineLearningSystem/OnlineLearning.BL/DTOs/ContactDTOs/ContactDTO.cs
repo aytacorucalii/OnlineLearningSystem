@@ -2,10 +2,12 @@
 
 public class ContactDTO
 {
-    public int Id { get; set; }
-    public string FullName { get; set; }
-    public string Email { get; set; }
-    public string Phone { get; set; }
-    public string Subject { get; set; }//basliq
-    public string Message { get; set; }
+	public int Id { get; set; }
+    public string Name { get; set; }
+    public string? UserId { get; set; }
+	public string? UserName { get; set; }
+	public string? Comment { get; set; }
+	public string? UserRole { get; set; }
+	public double Rating { get; set; }
+	public int CourseId { get; set; }
 }

@@ -1,46 +1,58 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineLearning.BL.DTOs;
 using OnlineLearning.BL.Services.Abstractions;
-using OnlineLearning.Core.Models;
-using OnlineLearning.DAL.Contexts;
+using System.Security.Claims;
 
 namespace OnlineLearningSystem.MVC.Controllers;
 
 public class ContactController : Controller
 {
 	readonly IContactService _service;
-    readonly AppDbContext _contexts;
+    readonly ICourseService _courseService;
     readonly IMapper _mapper;
-    public ContactController(IContactService service, AppDbContext contexts, IMapper mapper)
+    public ContactController(IContactService service, IMapper mapper, ICourseService courseService)
     {
         _service = service;
-        _contexts = contexts;
         _mapper = mapper;
+        _courseService = courseService;
     }
 
     [HttpGet]
-    [HttpGet]
-    public IActionResult Index()
-    {
-        return View(new ContactDTO()); 
-    }
+	public async Task<IActionResult> Create()
+	{
+		var courses = await _courseService.GetCourseListItemsAsync();
+		ViewData["Courses"] = new SelectList(courses, "Id", "CourseName");
 
-    [HttpPost]
-    public IActionResult SendMessage(ContactDTO model)
-    {
-        //try
-        //{
-            _service.SendMessage(model);
-            TempData["SuccessMessage"] = "Mesaj uğurla göndərildi!";
-            return RedirectToAction("Index");
-        //}
-        //catch (Exception ex)
-        //{
-        //    TempData["ErrorMessage"] = "Xəta baş verdi: " + ex.Message;
-        //    return RedirectToAction("Index");
-        //}
+		return View();
+	}
 
+
+	[HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ContactDTO dto)
+    {
+        if (!User.Identity.IsAuthenticated)
+        {
+            return Unauthorized();
+        }
+
+
+
+        if (!ModelState.IsValid)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        await _service.UserCreateAsync(dto,
+            User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+        User.Identity.Name,
+            User.FindFirst(ClaimTypes.Role)?.Value
+        );
+        await _service.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = "Your message has been submitted successfully!";
+        return RedirectToAction("Index", "Home");
     }
 }

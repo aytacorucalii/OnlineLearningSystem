@@ -35,11 +35,11 @@ public class StudentController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(StudentCreateDTO dto)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
-        //    return View(dto);
-        //}
+        if (!ModelState.IsValid)
+        {
+            ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
+            return View(dto);
+        }
 
         try
         {
@@ -52,11 +52,11 @@ public class StudentController : Controller
             ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
             ModelState.AddModelError("", ex.Message);
         }
-        //catch (Exception)
-        //{
-        //    ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
-        //    ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
-        //}
+        catch (Exception)
+        {
+            ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
+            ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
+        }
 
 
         return View(dto);
@@ -84,11 +84,11 @@ public class StudentController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update(StudentUpdateDTO dto)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
-        //    return View(dto);
-        //}
+        if (!ModelState.IsValid)
+        {
+            ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
+            return View(dto);
+        }
 
         try
         {
@@ -102,11 +102,11 @@ public class StudentController : Controller
             ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
             ModelState.AddModelError("", ex.Message);
         }
-        //catch (Exception)
-        //{
-        //    ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
-        //    ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
-        //}
+        catch (Exception)
+        {
+            ViewData["Courses"] = new SelectList(await _courseService.GetCourseListItemsAsync(), "Id", "CourseName");
+            ModelState.AddModelError("", "Gözlənilməz bir xəta baş verdi!");
+        }
 
         return View(dto);
     }

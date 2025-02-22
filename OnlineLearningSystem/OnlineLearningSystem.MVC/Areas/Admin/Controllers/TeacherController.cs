@@ -34,10 +34,10 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(TeacherCreateDTO dto)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    return View(dto);
-        //}
+        if (!ModelState.IsValid)
+        {
+            return View(dto);
+        }
 
         try
         {
@@ -50,11 +50,11 @@ public class TeacherController : Controller
             ModelState.AddModelError("CustomError", ex.Message);
             return View(dto);
         }
-        //catch (Exception)
-        //{
-        //    ModelState.AddModelError("CustomError", "Something went wrong!");
-        //    return View(dto);
-        //}
+        catch (Exception)
+        {
+            ModelState.AddModelError("CustomError", "Something went wrong!");
+            return View(dto);
+        }
     }
 
     public async Task<IActionResult> Update(int id)
@@ -82,10 +82,10 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update(TeacherUpdateDTO dto)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    return View(dto);
-        //}
+        if (!ModelState.IsValid)
+        {
+            return View(dto);
+        }
 
         try
         {
@@ -98,11 +98,11 @@ public class TeacherController : Controller
             ModelState.AddModelError("CustomError", ex.Message);
             return View(dto);
         }
-        //catch (Exception)
-        //{
-        //    ModelState.AddModelError("CustomError", "Something went wrong!");
-        //    return View(dto);
-        //}
+        catch (Exception)
+        {
+            ModelState.AddModelError("CustomError", "Something went wrong!");
+            return View(dto);
+        }
     }
 
     public async Task<IActionResult> Delete(int id)

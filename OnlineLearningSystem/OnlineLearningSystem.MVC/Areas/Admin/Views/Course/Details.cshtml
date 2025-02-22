@@ -21,7 +21,7 @@
                     <p><strong>Course Name:</strong> @Model.CourseName</p>
                     <p><strong>Description:</strong> @Model.Description</p>
                     <p><strong>Price:</strong> $@Model.Price</p>
-                    <p><strong>Rating:</strong> @Model.Rating (@Model.RatingCount reviews)</p>
+                    <p><strong>Rating:</strong> @Model.Rating (@Model.RatingCount messages)</p>
                     <p><strong>Duration:</strong> @(Model.Duration.HasValue ? Model.Duration.ToString() : "Not specified")</p>
                     <p><strong>Created At:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
 

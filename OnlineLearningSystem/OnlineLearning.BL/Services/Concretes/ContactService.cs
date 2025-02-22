@@ -19,23 +19,68 @@ public class ContactService : IContactService
         _mapper = mapper;
     }
 
-    public async Task CreateAsync(ContactDTO dto)
-    {
-        Contact contact = _mapper.Map<Contact>(dto);
-        await _writeRepo.CreateAsync(contact);
-    }
+	public async Task<ICollection<ContactDTO>> GetViewItemsAsync() => _mapper.Map<ICollection<ContactDTO>>(await _readRepo.GetAllAsync());
 
-    public async Task<ICollection<ContactDTO>> GetStudentListItemsAsync() =>
-        _mapper.Map<ICollection<ContactDTO>>(await _readRepo.GetAllAsync());
+	public async Task<ICollection<ContactDTO>> GetAllAsync()
+	{
+		ICollection<Contact> Contacts = (await _readRepo.GetAllAsync()).ToList();
+		ICollection<ContactDTO> ContactDtos = _mapper.Map<ICollection<ContactDTO>>(Contacts);
+		return ContactDtos;
+	}
 
-    public void SendMessage(ContactDTO messageDTO)
-    {
-        Contact message = _mapper.Map<Contact>(messageDTO);
-        if (string.IsNullOrWhiteSpace(message.FullName) || string.IsNullOrWhiteSpace(message.Email))
-        {
-            throw new ArgumentException("Ad və Email boş ola bilməz!");
-        }
+	public async Task<ContactDTO?> GetByIdAsync(int id)
+	{
+		Contact? Contact = await _readRepo.GetByIdAsync(id);
+		if (Contact == null)
+		{
+			return null;
+		}
 
-        _writeRepo.CreateAsync(message);
-    }
+		ContactDTO ContactDto = _mapper.Map<ContactDTO>(Contact);
+		return ContactDto;
+	}
+
+	public async Task CreateAsync(ContactDTO ContactCreateDto)
+	{
+		Contact Contact = _mapper.Map<Contact>(ContactCreateDto);
+		await _writeRepo.CreateAsync(Contact);
+	}
+
+	public async Task UserCreateAsync(ContactDTO userCreateDto, string UserId, string UserRole, string UserName)
+	{
+		Contact Contact = _mapper.Map<Contact>(userCreateDto);
+		Contact.UserName = UserName;
+		Contact.UserId = UserId;
+		Contact.UserRole = UserRole;
+		await _writeRepo.CreateAsync(Contact);
+	}
+
+	public async Task<bool> UpdateAsync(ContactDTO ContactUpdateDto)
+	{
+
+		Contact? existingContact = await _readRepo.GetByIdAsync(ContactUpdateDto.Id);
+		if (existingContact == null)
+		{
+			return false;
+		}
+
+		existingContact.Comment = ContactUpdateDto.Comment;
+		existingContact.Rating = ContactUpdateDto.Rating;
+
+		_writeRepo.Update(existingContact);
+		return true;
+	}
+	public async Task<bool> DeleteAsync(int id)
+	{
+		Contact? Contact = await _readRepo.GetByIdAsync(id);
+		if (Contact == null)
+		{
+			return false;
+		}
+
+		_writeRepo.Delete(Contact);
+		return true;
+	}
+
+	public async Task<int> SaveChangesAsync() => await _writeRepo.SaveChangesAsync();
 }

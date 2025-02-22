@@ -6,28 +6,30 @@ namespace OnlineLearning.BL.Validations.ContactValidations;
 public class ContactDTOValidator : AbstractValidator<ContactDTO>
 {
     public ContactDTOValidator()
-    {
-        RuleFor(e => e.FullName)
-           .NotEmpty().WithMessage("FullName cannot be empty!")
-           .MinimumLength(2).WithMessage("FullName must be at least 2 symbols long!")
-           .MaximumLength(100).WithMessage("The length of the Full name cannot exceed 100 symbols!");
-        RuleFor(e => e.Email)
-           .NotEmpty().WithMessage("Email cannot be empty!")
-           .EmailAddress().WithMessage("Email address is wrong!");
+	{
+		RuleFor(e => e.Id)
+		   .GreaterThan(0).WithMessage("Id must be a natural number!");
 
-        RuleFor(e => e.Subject)
-           .NotEmpty().WithMessage("Subject cannot be empty!")
-           .MinimumLength(2).WithMessage("Subject must be at least 2 symbols long!")
-           .MaximumLength(200).WithMessage("The length of the Subject cannot exceed 200 symbols!");
+		RuleFor(x => x.UserId)
+			.NotEmpty().WithMessage("User ID cannot be empty!");
 
-        RuleFor(e => e.Message)
-           .NotEmpty().WithMessage("Subject cannot be empty!")
-           .MinimumLength(2).WithMessage("Subject must be at least 2 symbols long!")
-           .MaximumLength(1000).WithMessage("The length of the Subject cannot exceed 1000 symbols!");
-        RuleFor(e => e.Phone)
-            .NotEmpty().WithMessage("Phone number cannot be empty!")
-            .Matches(@"^\+994(70|10|50|51|55|60|77|99)\d{7}$")
-            .WithMessage("Invalid phone number format! Example: +994xxxxxxxxx");
+		RuleFor(x => x.UserName)
+			.NotEmpty().WithMessage("UserName cannot be empty!")
+			.MaximumLength(100).WithMessage("Username must not be longer than 100 characters.");
 
-    }
+		RuleFor(x => x.UserRole)
+		   .NotEmpty().WithMessage("UserRole cannot be empty!")
+		   .MaximumLength(100).WithMessage("UserRole must not be longer than 100 characters.");
+
+		RuleFor(x => x.Comment)
+			.NotEmpty().WithMessage("Comment cannot be empty!")
+			.MaximumLength(1000).WithMessage("The comment can be a maximum of 1000 characters.");
+
+		RuleFor(x => x.Rating)
+			.InclusiveBetween(1, 5).WithMessage("Rating must be between 1 and 5.");
+
+		RuleFor(x => x.CourseId)
+			.GreaterThan(0).WithMessage("course ID must be greater than 0.");
+
+	}
 }

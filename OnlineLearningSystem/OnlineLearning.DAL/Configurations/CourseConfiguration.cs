@@ -42,6 +42,11 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         builder.HasMany(c => c.StudentCourses)
                .WithOne(sc => sc.Course)
                .HasForeignKey(sc => sc.CourseId)
-		       .OnDelete(DeleteBehavior.NoAction);   
-    }
+		       .OnDelete(DeleteBehavior.NoAction);
+
+		builder.HasMany(c => c.Contacts)
+			  .WithOne(co => co.Course)  
+			  .HasForeignKey(co => co.CourseId) // ForeignKey: CourseId
+			  .OnDelete(DeleteBehavior.NoAction);
+	}
 }
